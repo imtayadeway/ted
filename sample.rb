@@ -1,8 +1,8 @@
 book = Ted::Book.build(filename: 'sample')
 sheet = book.sheets.create('sheet 1',
                            a: {id: :data_1, name: 'a header'},
-                           b: {id: :data_2, name: 'another header'},
-                           c: {id: :data_3, name: 'yet another header'})
+                           b: {id: :data_2, name: 'another header', format: :date},
+                           c: {id: :data_3, name: 'yet another header', format: :currency})
 sheet.name = 'new sheet'
 
 # do some manipulation:
