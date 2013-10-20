@@ -1,13 +1,15 @@
 module Ted
   class Book
+    class << self
+      def build(filename)
+        new(filename)
+      end
+    end
+
     attr_accessor :filename
 
     def initialize(filename)
       @filename = filename
-    end
-
-    def build(filename)
-      initialize(filename)
     end
 
     def sheets
