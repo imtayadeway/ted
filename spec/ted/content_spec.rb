@@ -5,9 +5,46 @@ module Ted
     it { should respond_to(:document_content) }
     it { should respond_to(:attributes) }
     it { should respond_to(:xml) }
+    it { should respond_to(:generate) }
+    it { should respond_to(:font_face) }
+    it { should respond_to(:font_face_attributes) }
 
     describe "#xml" do
-      specify { subject.xml.should be_a_kind_of(Builder) }
+      specify { subject.xml.should be_a_kind_of(Builder::XmlMarkup) }
+    end
+
+    describe "#font_face" do
+      let(:receiver) { double('receiver') }
+      before { receiver.stub(:style) }
+
+      it "sends the argument #style(:'font-face')" do
+        pending('false negative')
+        subject.font_face(receiver)
+        receiver.should_receive(:style).with(:'font-face')
+      end
+    end
+
+    describe "#font_face_attributes" do
+      specify { subject.font_face_attributes.should be_a_kind_of(Array) }
+
+      it "returns an array of hashes" do
+        subject.font_face_attributes.each { |a| a.should be_a_kind_of(Hash) }
+      end
+    end
+
+    describe "#generate" do
+      let(:content) { subject.generate }
+      specify { content.should =~ /office:version="1.2">/ }
+      specify { content.should =~ /office:document-content/ }
+      specify { content.should =~ /office:scripts/ }
+      specify { content.should =~ /office:font-face-decls/ }
+      specify { content.should =~ /office:automatic-styles/ }
+      specify { content.should =~ /office:body/ }
+      specify { content.should =~ /style:font-face/ }
+      specify { content.should =~ /style:name="Arial"/ }
+      specify { content.should =~ /style:name="DejaVu Sans"/ }
+      specify { content.should =~ /style:name="Lohit Hindi"/ }
+      specify { content.should =~ /style:name="WenQuanYi Zen Hei"/ }
     end
 
     describe "#attributes" do
