@@ -1,6 +1,6 @@
 module Ted
-  class XmlDoc
-    DOCUMENT_CONTENT_ATTRIBUTES = {
+  module XmlDoc
+    ATTRIBUTES = {
       'xmlns:office'       => "urn:oasis:names:tc:opendocument:xmlns:office:1.0",
       'xmlns:table'        => "urn:oasis:names:tc:opendocument:xmlns:table:1.0",
       'xmlns:draw'         => "urn:oasis:names:tc:opendocument:xmlns:drawing:1.0",
@@ -33,9 +33,5 @@ module Ted
       'xmlns:css3t'        => "http://www.w3.org/TR/css3-text/",
       'office:version'       => "1.2"
     }
-
-    def content_attributes
-      DOCUMENT_CONTENT_ATTRIBUTES
-    end
   end
 end

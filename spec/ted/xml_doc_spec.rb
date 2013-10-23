@@ -2,15 +2,12 @@ require 'spec_helper'
 
 module Ted
   describe XmlDoc do
-    it { should respond_to(:content_attributes) }
+    subject { XmlDoc::ATTRIBUTES }
+    it { should be_a_kind_of(Hash) }
 
-    describe "#content_attributes" do
-      it "returns a hash" do
-        subject.content_attributes.should be_a_kind_of(Hash)
-      end
-
-      it "returns an office version of 1.2" do
-        subject.content_attributes['office:version'].should == '1.2'
+    context "when asked for the office version" do
+      it "returns 1.2" do
+        subject['office:version'].should == '1.2'
       end
     end
   end
