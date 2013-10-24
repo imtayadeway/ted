@@ -6,7 +6,7 @@ module Ted
 
     def initialize
       @attributes = XmlDoc::ATTRIBUTES
-      @xml = Builder::XmlMarkup.new(indent: 2)
+      @xml = Builder::XmlMarkup.new(indent: 0)
       @xml.instruct! :xml, encoding: 'UTF-8'
     end
 
@@ -19,44 +19,39 @@ module Ted
     end
 
     def font_face(content, index)
-      content.style(:'font-face', font_face_attributes[index])
+      content.style(:'font-face', font_face_attrs[index])
     end
 
-    def font_face_attributes
-      [
-        {
-          'style:name' => "Arial",
-          'svg:font-family' => "Arial",
-          'style:font-family-generic' => "swiss",
-          'style:font-pitch' => "variable"
-        },
-        {
-          'style:name' => "DejaVu Sans",
-          'svg:font-family' => "&apos;DejaVu Sans&apos;",
-          'style:font-family-generic' => "system",
-          'style:font-pitch' => "variable"
-        },
-        {
-          'style:name' => "Lohit Hindi",
-          'svg:font-family' => "&apos;Lohit Hindi&apos;",
-          'style:font-family-generic' => "system",
-          'style:font-pitch' => "variable"
-        },
-        {
-          'style:name' => "WenQuanYi Zen Hei",
-          'svg:font-family' => "&apos;WenQuanYi Zen Hei&apos;",
-          'style:font-family-generic' => "system",
-          'style:font-pitch' => "variable"
-        }
-      ]
+    def style(content, index)
+      content.style(:style, style_attrs[index]) { |ss| style_table(ss, index) }
+    end
+
+    def style_table(content, index)
+      content.style(style_table_tags[index], style_table_attrs[index])
+    end
+
+    def add_font_faces_to(content)
+      font_face_attrs.size.times { |i| font_face(content, i) }
+    end
+
+    def add_styles_to(content)
+      style_attrs.size.times { |i| style(content, i) }
+    end
+
+    def add_spreadsheet_to(content)
+      content.office(:spreadsheet) { |s| add_table_to(s) }
+    end
+
+    def add_table_to(content)
+      content.table(:table)
     end
 
     def generate
       document_content do |dc|
         dc.office(:scripts)
-        dc.office(:'font-face-decls') { |ffd| font_face_attributes.size.times { |i| font_face(ffd, i) } }
-        dc.office(:'automatic-styles')
-        dc.office(:body)
+        dc.office(:'font-face-decls') { |ffd| add_font_faces_to(ffd) }
+        dc.office(:'automatic-styles') { |as| add_styles_to(as) }
+        dc.office(:body) { |body| add_spreadsheet_to(body) }
       end
     end
   end

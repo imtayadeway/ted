@@ -7,7 +7,15 @@ module Ted
     it { should respond_to(:xml) }
     it { should respond_to(:generate) }
     it { should respond_to(:font_face) }
-    it { should respond_to(:font_face_attributes) }
+    it { should respond_to(:font_face_attrs) }
+    it { should respond_to(:style) }
+    it { should respond_to(:style_attrs) }
+    it { should respond_to(:style_table_attrs) }
+    it { should respond_to(:style_table_tags) }
+    it { should respond_to(:add_font_faces_to) }
+    it { should respond_to(:add_styles_to) }
+    it { should respond_to(:add_spreadsheet_to) }
+    it { should respond_to(:add_table_to) }
 
     describe "#xml" do
       specify { subject.xml.should be_a_kind_of(Builder::XmlMarkup) }
@@ -24,11 +32,24 @@ module Ted
       end
     end
 
-    describe "#font_face_attributes" do
-      specify { subject.font_face_attributes.should be_a_kind_of(Array) }
+    describe "#font_face_attrs" do
+      let(:attrs) { subject.font_face_attrs }
+      specify { attrs.should be_a_kind_of(Array) }
 
       it "returns an array of hashes" do
-        subject.font_face_attributes.each { |a| a.should be_a_kind_of(Hash) }
+        attrs.each { |a| a.should be_a_kind_of(Hash) }
+      end
+    end
+
+    describe "#style" do
+    end
+
+    describe "#style_attrs" do
+      let(:attrs) { subject.style_attrs }
+      specify { attrs.should be_a_kind_of(Array) }
+
+      it "returns an array of hashes" do
+        attrs.each { |a| a.should be_a_kind_of(Hash) }
       end
     end
 
@@ -45,6 +66,13 @@ module Ted
       specify { content.should =~ /style:name="DejaVu Sans"/ }
       specify { content.should =~ /style:name="Lohit Hindi"/ }
       specify { content.should =~ /style:name="WenQuanYi Zen Hei"/ }
+      specify { content.should =~ /style:name="co1"/ }
+      specify { content.should =~ /style:name="ro1"/ }
+      specify { content.should =~ /style:name="ta1"/ }
+      specify { content.should =~ /style:table-row-properties/ }
+      specify { content.should =~ /style:table-column-properties/ }
+      specify { content.should =~ /style:table-properties/ }
+      specify { content.should =~ /office:spreadsheet/ }
     end
 
     describe "#attributes" do

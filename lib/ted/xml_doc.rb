@@ -31,7 +31,87 @@ module Ted
       'xmlns:field'        => "urn:openoffice:names:experimental:ooo-ms-interop:xmlns:field:1.0",
       'xmlns:formx'        => "urn:openoffice:names:experimental:ooxml-odf-interop:xmlns:form:1.0",
       'xmlns:css3t'        => "http://www.w3.org/TR/css3-text/",
-      'office:version'       => "1.2"
+      'office:version'     => "1.2"
     }
+
+    def font_face_attrs
+      [
+        {
+          'style:name'                => "Arial",
+          'svg:font-family'           => "Arial",
+          'style:font-family-generic' => "swiss",
+          'style:font-pitch'          => "variable"
+        },
+
+        {
+          'style:name'                => "DejaVu Sans",
+          'svg:font-family'           => "&apos;DejaVu Sans&apos;",
+          'style:font-family-generic' => "system",
+          'style:font-pitch'          => "variable"
+        },
+
+        {
+          'style:name'                => "Lohit Hindi",
+          'svg:font-family'           => "&apos;Lohit Hindi&apos;",
+          'style:font-family-generic' => "system",
+          'style:font-pitch'          => "variable"
+        },
+
+        {
+          'style:name'                => "WenQuanYi Zen Hei",
+          'svg:font-family'           => "&apos;WenQuanYi Zen Hei&apos;",
+          'style:font-family-generic' => "system",
+          'style:font-pitch'          => "variable"
+        }
+      ]
+    end
+
+    def style_attrs
+      [
+        {
+          'style:name' => "co1",
+          'style:family' => "table-column"
+        },
+
+        {
+          'style:name' => "ro1",
+          'style:family' => "table-row"
+        },
+
+        {
+          'style:name' => "ta1",
+          'style:family' => "table",
+          'style:master-page-name' => "Default"
+        }
+      ]
+    end
+
+    def style_table_attrs
+      [
+        {
+          'fo:break-before' => "auto",
+          'style:column-width' => "0.889in"
+        },
+
+        {
+          'style:row-height' => "0.1693in",
+          'fo:break-before' => "auto",
+          'style:use-optimal-row-height' => "true"
+        },
+
+        {
+          'table:display' => "true",
+          'style:writing-mode' => "lr-tb"
+        }
+      ]
+    end
+
+    def style_table_tags
+      [
+        :'style:table-column-properties',
+        :'style:table-row-properties',
+        :'style:table-properties'
+      ]
+    end
   end
 end
