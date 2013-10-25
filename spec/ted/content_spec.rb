@@ -11,6 +11,7 @@ module Ted
     it { should respond_to(:style) }
     it { should respond_to(:style_attrs) }
     it { should respond_to(:style_table_attrs) }
+    it { should respond_to(:table_attrs) }
     it { should respond_to(:style_table_tags) }
     it { should respond_to(:add_font_faces_to) }
     it { should respond_to(:add_styles_to) }
@@ -73,6 +74,10 @@ module Ted
       specify { content.should =~ /style:table-column-properties/ }
       specify { content.should =~ /style:table-properties/ }
       specify { content.should =~ /office:spreadsheet/ }
+      specify { content.should =~ /table:name/ }
+      specify { content.should =~ /table:style-name="ta1"/ }
+      specify { content.should =~ /table:number-columns-repeated/ }
+      specify { content.should =~ /table:default-cell-style-name/ }
     end
 
     describe "#attributes" do
