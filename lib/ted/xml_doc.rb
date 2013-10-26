@@ -69,18 +69,18 @@ module Ted
     def style_attrs
       [
         {
-          'style:name' => "co1",
+          'style:name'   => "co1",
           'style:family' => "table-column"
         },
 
         {
-          'style:name' => "ro1",
+          'style:name'   => "ro1",
           'style:family' => "table-row"
         },
 
         {
-          'style:name' => "ta1",
-          'style:family' => "table",
+          'style:name'             => "ta1",
+          'style:family'           => "table",
           'style:master-page-name' => "Default"
         }
       ]
@@ -89,21 +89,37 @@ module Ted
     def style_table_attrs
       [
         {
-          'fo:break-before' => "auto",
+          'fo:break-before'    => "auto",
           'style:column-width' => "0.889in"
         },
 
         {
-          'style:row-height' => "0.1693in",
-          'fo:break-before' => "auto",
+          'style:row-height'             => "0.1693in",
+          'fo:break-before'              => "auto",
           'style:use-optimal-row-height' => "true"
         },
 
         {
-          'table:display' => "true",
+          'table:display'      => "true",
           'style:writing-mode' => "lr-tb"
         }
       ]
+    end
+
+    def table_attrs
+      {'table:name' => "Sheet1", 'table:style-name' => "ta1"}
+    end
+
+    def table_column_attrs
+      {
+        'table:style-name'              => "co1",
+        'table:number-columns-repeated' => "3",
+        'table:default-cell-style-name' => "Default"
+      }
+    end
+
+    def table_row_attrs
+      {'table:style-name' => "ro1" }
     end
 
     def style_table_tags

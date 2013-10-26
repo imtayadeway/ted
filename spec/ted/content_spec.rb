@@ -2,24 +2,17 @@ require 'spec_helper'
 
 module Ted
   describe Content do
-    it { should respond_to(:document_content) }
     it { should respond_to(:attributes) }
-    it { should respond_to(:xml) }
+    it { should respond_to(:markup) }
     it { should respond_to(:generate) }
-    it { should respond_to(:font_face) }
     it { should respond_to(:font_face_attrs) }
-    it { should respond_to(:style) }
     it { should respond_to(:style_attrs) }
     it { should respond_to(:style_table_attrs) }
     it { should respond_to(:table_attrs) }
     it { should respond_to(:style_table_tags) }
-    it { should respond_to(:add_font_faces_to) }
-    it { should respond_to(:add_styles_to) }
-    it { should respond_to(:add_spreadsheet_to) }
-    it { should respond_to(:add_table_to) }
 
-    describe "#xml" do
-      specify { subject.xml.should be_a_kind_of(Builder::XmlMarkup) }
+    describe "#markup" do
+      specify { subject.markup.should be_a_kind_of(Builder::XmlMarkup) }
     end
 
     describe "#font_face" do
@@ -56,6 +49,26 @@ module Ted
 
     describe "#generate" do
       let(:content) { subject.generate }
+
+      specify { content.should be_a_kind_of(String) }
+
+      it "specifies xml version 1.0" do
+        content.should =~ /<?xml version="1.0"/
+      end
+
+      it "specifies UTF-8 encoding" do
+        content.should =~ /encoding="UTF-8"\?>/
+      end
+
+      it "opens the office:document-content tag" do
+        content.should =~ /<office:document-content/
+      end
+
+      describe "attributes" do
+        it "specifies office version 1.2" do
+          content.should =~ /office:version="1.2"/
+        end
+      end
       specify { content.should =~ /office:version="1.2">/ }
       specify { content.should =~ /office:document-content/ }
       specify { content.should =~ /office:scripts/ }
@@ -86,29 +99,6 @@ module Ted
       context "when asked for the office version" do
         it "returns 1.2" do
           subject.attributes['office:version'].should == '1.2'
-        end
-      end
-    end
-
-    describe "#document_content" do
-      let(:content) { subject.document_content }
-      specify { content.should be_a_kind_of(String) }
-
-      it "specifies xml version 1.0" do
-        content.should =~ /<?xml version="1.0"/
-      end
-
-      it "specifies UTF-8 encoding" do
-        content.should =~ /encoding="UTF-8"\?>/
-      end
-
-      it "opens the office:document-content tag" do
-        content.should =~ /<office:document-content/
-      end
-
-      describe "attributes" do
-        it "specifies office version 1.2" do
-          content.should =~ /office:version="1.2"/
         end
       end
     end
