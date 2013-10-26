@@ -10,23 +10,26 @@ module Ted
       markup.instruct! :xml, encoding: 'UTF-8'
     end
 
-    def generate(&block)
+    def generate
       document_content do |dc|
         dc.office(:scripts)
         dc.office(:'font-face-decls') { |ffd| add_font_faces_to(ffd) }
         dc.office(:'automatic-styles') { |as| add_styles_to(as) }
-        dc.office(:body) { |body| add_spreadsheet_to(body, &block) }
+        dc.office(:body) do |body|
+          add_spreadsheet_to(body) do |s|
+            add_table_to(s) do |tt|
+              add_table_column(tt)
+              add_table_row(tt)
+            end
+          end
+        end
       end
     end
 
   private
 
     def document_content(&block)
-      if block_given?
-        markup.office(:'document-content', attributes) { |dc| yield dc }
-      else
-        markup.office(:'document-content', attributes)
-      end
+      markup.office(:'document-content', attributes) { |dc| yield dc }
     end
 
     def font_face(xml, index)
@@ -49,15 +52,12 @@ module Ted
       style_attrs.size.times { |i| style(xml, i) }
     end
 
-    def add_spreadsheet_to(xml)
-      xml.office(:spreadsheet) { |s| add_table_to(s) }
+    def add_spreadsheet_to(xml, &block)
+      xml.office(:spreadsheet) { |s| yield s }
     end
 
-    def add_table_to(xml)
-      xml.table(:table, table_attrs) do |tt|
-        add_table_column(tt)
-        add_table_row(tt)
-      end
+    def add_table_to(xml, &block)
+      xml.table(:table, table_attrs) { |tt| yield tt }
     end
 
     def add_table_column(xml)
@@ -66,13 +66,13 @@ module Ted
 
     def add_table_row(xml)
       xml.table(:'table-row', table_row_attrs) do |tr|
-        3.times { add_table_cell(tr, :string) }
+        3.times { add_table_cell(tr, :string) } # or float, etc...
       end
     end
 
     def add_table_cell(xml, type)
       xml.table(:'table-cell', 'office:value-type' => type) do |tc|
-        tc.text(:p) { |t| 'a header' }
+        tc.text(:p) { |t| 'a header' } # --> add the cell content
       end
     end
   end
