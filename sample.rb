@@ -6,7 +6,6 @@ sheet = book.build(name: 'sheet 1',
 sheet.name = 'new sheet'
 
 # do some manipulation:
-
 # some header-generating code....
 sheet.headers = new_headers_array
 sheet.headers << new_header
