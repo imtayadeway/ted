@@ -14,28 +14,30 @@ module Ted
       ('a'..'amj').map(&:to_sym)
     end
 
-    def fetch_headers
-      (columns & options.keys).map { |k| headers[k] = options[k] }
+    def insert(data)
+      rows << next_row_data(data)
     end
 
-    def next_row
-      rows.count + 2
+  private
+
+    def fetch_headers
+      (columns & options.keys).map { |k| headers[k] = options[k] }
     end
 
     def next_row_data(data)
       {next_row => populated_row(data)}
     end
 
-    def blank_row
-      headers.values.map.with_object({}) { |v, row| row[v[:id]] = '' }
+    def next_row
+      rows.count + 2
     end
 
     def populated_row(data)
       blank_row.merge(data)
     end
 
-    def insert(data)
-      rows << next_row_data(data)
+    def blank_row
+      headers.values.map.with_object({}) { |v, row| row[v[:id]] = '' }
     end
   end
 end

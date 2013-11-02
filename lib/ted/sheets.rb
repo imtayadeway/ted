@@ -21,6 +21,8 @@ module Ted
       sheets.map(&:name)
     end
 
+  private
+
     def new_sheetname
       return 'Sheet 1' unless sheetnames.include?('Sheet 1')
       'Sheet 2'

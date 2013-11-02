@@ -2,16 +2,21 @@ module Ted
   describe Sheet do
     subject { Sheet.new('Sheet 1', a: {id: :data_1, name: 'a header'}) }
     it { should respond_to(:name) }
-    its(:name) { should_not be_nil }
     it { should respond_to(:columns) }
     it { should respond_to(:headers) }
     it { should respond_to(:options) }
     it { should respond_to(:rows) }
     it { should respond_to(:insert) }
-    it { should respond_to(:next_row) }
-    it { should respond_to(:blank_row) }
-    it { should respond_to(:populated_row) }
-    it { should respond_to(:next_row_data) }
+
+    its(:name) { should_not be_nil }
+
+    describe "#name=" do
+      it "assigns the sheet a new name" do
+        expect {
+          subject.name = 'Sheet 2'
+        }.to change { subject.name }.to('Sheet 2')
+      end
+    end
 
     describe "#columns" do
       specify { subject.columns.should be_a_kind_of(Array) }
@@ -32,7 +37,7 @@ module Ted
     describe "#headers" do
       context "when initialized with column 'A' header" do
         it "returns the name for column 'A'" do
-          subject.headers[:a][:name].should match(/a header/)
+          subject.headers[:a][:name].should =~ /a header/
         end
 
         it "returns the id for column 'A'" do
@@ -47,40 +52,36 @@ module Ted
     end
 
     describe "#insert" do
+      let(:insert_row) { subject.insert(data_1: '$123') }
+
       it "adds a row to the list of rows" do
-        expect {
-          subject.insert(data_1: '$123')
-        }.to change { subject.rows.count }.by(1)
+        expect { insert_row }.to change { subject.rows.count }.by(1)
       end
     end
 
-    describe "#next_row" do
-      it "returns the first empty row" do
-        subject.next_row.should == 2
-      end
-    end
+    describe "private methods" do
+      describe "#blank_row" do
+        specify { subject.send(:blank_row).should be_a_kind_of(Hash) }
 
-    describe "#blank_row" do
-      specify { subject.blank_row.should be_a_kind_of(Hash) }
-
-      it "returns a hash of empty empty strings with header ids for keys" do
-        subject.blank_row.should == {data_1: ''}
-      end
-    end
-
-    describe "#populated_row" do
-      it "returns a blank row with empty hash" do
-        subject.populated_row({}).should == {data_1: ''}
+        it "returns a hash of empty empty strings with header ids for keys" do
+          subject.send(:blank_row).should == {data_1: ''}
+        end
       end
 
-      it "returns a blank row populated with the data passed to it" do
-        subject.populated_row(data_1: '$123').should == {data_1: '$123'}
-      end
-    end
+      describe "#populated_row" do
+        it "returns a blank row with empty hash" do
+          subject.send(:populated_row, {}).should == {data_1: ''}
+        end
 
-    describe "#next_row_data" do
-      it "returns a hash with row number for key and data for values" do
-        subject.next_row_data(data_1: '$123').should == {2 => {data_1: '$123'}}
+        it "returns a blank row populated with the data passed to it" do
+          subject.send(:populated_row, data_1: '$123').should == {data_1: '$123'}
+        end
+      end
+
+      describe "#next_row_data" do
+        it "returns a hash with row number for key and data for values" do
+          subject.send(:next_row_data, data_1: '$123').should == {2 => {data_1: '$123'}}
+        end
       end
     end
   end
