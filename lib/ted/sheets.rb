@@ -12,7 +12,7 @@ module Ted
       sheets.each { |sheet| yield sheet }
     end
 
-    def create(options = {})
+    def build(options = {})
       sheets << Ted::Sheet.new(options.delete(:name) || new_sheetname, options)
       sheets.last
     end

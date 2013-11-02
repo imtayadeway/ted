@@ -12,6 +12,10 @@ module Ted
       @filename = filename
     end
 
+    def build(options = {})
+      sheets.build(options)
+    end
+
     def sheets
       @sheets ||= Ted::Sheets.new
     end
