@@ -16,9 +16,11 @@ module Ted
 
     describe "#build" do
       it "adds a sheet" do
-        expect {
-          subject.build(name: 'sheet 1', a: {id: :id, name: 'name'})
-        }.to change { subject.sheets.count }.by(1)
+        expect { subject.build }.to change { subject.sheets.count }.by(1)
+      end
+
+      it "returns a sheet" do
+        subject.build.should be_an_instance_of(Ted::Sheet)
       end
     end
 
