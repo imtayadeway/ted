@@ -11,7 +11,7 @@ it is being made partly in response to the lack of:
 2. a clean, simple and intuitive interface that hides the details of having to specify every goddamn cell you want to manipulate
 3. a straightforward license
 
-in many other spreadsheet writers. the initial aim is to be able to create a complete spreadsheet from a dataset that conforms to a certain structure (typically an array of hashes) in a few steps, in a way that I would want to create a spreadsheet 99% of the time. ideally it should look something like this:
+in many other spreadsheet generators. the initial aim is to be able to create a complete spreadsheet from a dataset that conforms to a certain structure (typically an array of hashes) in a few steps, in a way that I would want to create a spreadsheet 99% of the time. ideally it should look something like this:
 
 ```ruby
 book = Ted::Book.build(filename: 'sample')
@@ -23,7 +23,7 @@ sheet = book.build(
   d: {id: :percent, name: 'The Percentages', format: percent}
 )
 
-# some spectacular data-generating code....
+# . . . some spectacular dataset-generating code . . .
 
 dataset.each { |d| sheet.insert(d) }
 
