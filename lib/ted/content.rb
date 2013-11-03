@@ -1,6 +1,6 @@
 module Ted
   class Content
-    attr_accessor :attributes, :markup
+    attr_accessor :attributes, :markup, :book
 
     include XmlDoc
 

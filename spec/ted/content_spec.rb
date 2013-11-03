@@ -5,6 +5,7 @@ module Ted
     it { should respond_to(:attributes) }
     it { should respond_to(:markup) }
     it { should respond_to(:generate) }
+    it { should respond_to(:book) }
     it { should respond_to(:font_face_attrs) }
     it { should respond_to(:style_attrs) }
     it { should respond_to(:style_table_attrs) }
@@ -13,17 +14,6 @@ module Ted
 
     describe "#markup" do
       specify { subject.markup.should be_a_kind_of(Builder::XmlMarkup) }
-    end
-
-    describe "#font_face" do
-      let(:receiver) { double('receiver') }
-      before { receiver.stub(:style) }
-
-      it "sends the argument #style(:'font-face')" do
-        pending('false negative')
-        subject.font_face(receiver)
-        receiver.should_receive(:style).with(:'font-face')
-      end
     end
 
     describe "#font_face_attrs" do
