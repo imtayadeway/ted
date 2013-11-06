@@ -1,12 +1,21 @@
 module Ted
   describe Sheet do
-    subject { Sheet.new('Sheet 1', a: {id: :data_1, name: 'a header'}) }
+    subject {
+      Sheet.new(
+        'Sheet 1',
+        a: {id: :data_1, name: 'header1'},
+        b: {id: :data_2, name: 'header2'}
+      )
+    }
+
     it { should respond_to(:name) }
     it { should respond_to(:columns) }
     it { should respond_to(:headers) }
     it { should respond_to(:options) }
     it { should respond_to(:rows) }
     it { should respond_to(:insert) }
+    it { should respond_to(:row) }
+    it { should respond_to(:column) }
 
     its(:name) { should_not be_nil }
 
@@ -34,10 +43,34 @@ module Ted
       end
     end
 
+    describe "#column" do
+      before do
+        3.times { |n| subject.insert({data_1: 2 * (n + 1) - 1, data_2: 2 * n}) }
+      end
+
+      it "returns the values for that column" do
+        subject.column(:a).should == [1,3,5]
+      end
+    end
+
+    describe "#row" do
+      before do
+        subject.rows << 'Row 2'
+      end
+
+      it "returns the row corresponding to the spreadsheet row number" do
+        subject.row(2).should == 'Row 2'
+      end
+
+      specify "the first row comprises the headers" do
+        subject.row(1).should == {data_1: 'header1', data_2: 'header2'}
+      end
+    end
+
     describe "#headers" do
       context "when initialized with column 'A' header" do
         it "returns the name for column 'A'" do
-          subject.headers[:a][:name].should =~ /a header/
+          subject.headers[:a][:name].should =~ /header1/
         end
 
         it "returns the id for column 'A'" do
