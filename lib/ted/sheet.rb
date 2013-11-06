@@ -15,25 +15,13 @@ module Ted
     end
 
     def insert(data)
-      rows << next_row_data(data)
+      rows << blank_row.merge(data)
     end
 
   private
 
     def fetch_headers
       (columns & options.keys).map { |k| headers[k] = options[k] }
-    end
-
-    def next_row_data(data)
-      {next_row => populated_row(data)}
-    end
-
-    def next_row
-      rows.count + 2
-    end
-
-    def populated_row(data)
-      blank_row.merge(data)
     end
 
     def blank_row

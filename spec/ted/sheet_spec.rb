@@ -58,31 +58,5 @@ module Ted
         expect { insert_row }.to change { subject.rows.count }.by(1)
       end
     end
-
-    describe "private methods" do
-      describe "#blank_row" do
-        specify { subject.send(:blank_row).should be_a_kind_of(Hash) }
-
-        it "returns a hash of empty empty strings with header ids for keys" do
-          subject.send(:blank_row).should == {data_1: ''}
-        end
-      end
-
-      describe "#populated_row" do
-        it "returns a blank row with empty hash" do
-          subject.send(:populated_row, {}).should == {data_1: ''}
-        end
-
-        it "returns a blank row populated with the data passed to it" do
-          subject.send(:populated_row, data_1: '$123').should == {data_1: '$123'}
-        end
-      end
-
-      describe "#next_row_data" do
-        it "returns a hash with row number for key and data for values" do
-          subject.send(:next_row_data, data_1: '$123').should == {2 => {data_1: '$123'}}
-        end
-      end
-    end
   end
 end

@@ -8,8 +8,8 @@ module Ted
       @sheets = []
     end
 
-    def each
-      sheets.each { |sheet| yield sheet }
+    def each(&block)
+      sheets.each(&block)
     end
 
     def build(options = {})
