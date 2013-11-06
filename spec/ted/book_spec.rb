@@ -6,7 +6,7 @@ module Ted
 
     it { should respond_to(:filename) }
     it { should respond_to(:sheets) }
-    it { should respond_to(:build) }
+    it { should respond_to(:add_sheet) }
     it { should respond_to(:save) }
 
     describe ".build" do
@@ -14,13 +14,13 @@ module Ted
       specify { Book.build(name: 'filename').should be_an_instance_of(Book) }
     end
 
-    describe "#build" do
+    describe "#add_sheet" do
       it "adds a sheet" do
-        expect { subject.build }.to change { subject.sheets.count }.by(1)
+        expect { subject.add_sheet }.to change { subject.sheets.count }.by(1)
       end
 
       it "returns a sheet" do
-        subject.build.should be_an_instance_of(Ted::Sheet)
+        subject.add_sheet.should be_an_instance_of(Ted::Sheet)
       end
     end
 

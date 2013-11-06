@@ -12,7 +12,7 @@ module Ted
       @filename = filename
     end
 
-    def build(options = {})
+    def add_sheet(options = {})
       sheets.build(options)
     end
 

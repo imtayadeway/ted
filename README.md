@@ -15,7 +15,7 @@ in many other spreadsheet generators. the initial aim is to be able to create a 
 
 ```ruby
 book = Ted::Book.build(filename: 'sample')
-sheet = book.build(
+sheet = book.add_sheet(
   name: 'sheet 1',
   a: {id: :name, name: 'Name'},
   b: {id: :date, name: 'Date', format: :date},
@@ -23,9 +23,9 @@ sheet = book.build(
   d: {id: :percent, name: 'The Percentages', format: percent}
 )
 
-# . . . some spectacular dataset-generating code . . .
+# lots of spectacular dataset-generating code
 
-dataset.each { |d| sheet.insert(d) }
+dataset.each { |row| sheet.insert(row) }
 
 book.save
 ```
