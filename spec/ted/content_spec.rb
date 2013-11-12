@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Ted
   describe Content do
-    it { should respond_to(:attributes) }
+    it { should respond_to(:document_content_attrs) }
     it { should respond_to(:markup) }
     it { should respond_to(:generate) }
     it { should respond_to(:book) }
@@ -59,6 +59,7 @@ module Ted
           content.should =~ /office:version="1.2"/
         end
       end
+
       specify { content.should =~ /office:version="1.2">/ }
       specify { content.should =~ /office:document-content/ }
       specify { content.should =~ /office:scripts/ }
@@ -83,12 +84,12 @@ module Ted
       specify { content.should =~ /table:default-cell-style-name/ }
     end
 
-    describe "#attributes" do
-      specify { subject.attributes.should be_a_kind_of(Hash) }
+    describe "#document_content_attrs" do
+      specify { subject.document_content_attrs.should be_a_kind_of(Hash) }
 
       context "when asked for the office version" do
         it "returns 1.2" do
-          subject.attributes['office:version'].should == '1.2'
+          subject.document_content_attrs['office:version'].should == '1.2'
         end
       end
     end

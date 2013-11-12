@@ -1,11 +1,10 @@
 module Ted
   class Content
-    attr_accessor :attributes, :markup, :book
+    attr_accessor :markup, :book
 
     include XmlDoc
 
     def initialize
-      @attributes = XmlDoc::ATTRIBUTES
       @markup = Builder::XmlMarkup.new(indent: 0)
       markup.instruct! :xml, encoding: 'UTF-8'
     end
@@ -29,7 +28,7 @@ module Ted
   private
 
     def document_content(&block)
-      markup.office(:'document-content', attributes, &block)
+      markup.office(:'document-content', document_content_attrs, &block)
     end
 
     def font_face(xml, index)
