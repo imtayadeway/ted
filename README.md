@@ -23,7 +23,7 @@ sheet = book.add_sheet(
   d: {id: :percent, name: 'The Percentages', format: percent}
 )
 
-# lots of spectacular dataset-generating code
+# lots of dataset-generating code omitted
 
 dataset.each { |row| sheet.insert(row) }
 
