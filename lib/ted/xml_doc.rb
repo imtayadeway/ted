@@ -94,7 +94,7 @@ module Ted
         },
 
         {
-          'style:row-height'             => "0.1693in",
+          'style:row-height'             => "0.1827in",
           'fo:break-before'              => "auto",
           'style:use-optimal-row-height' => "true"
         },

@@ -29,7 +29,7 @@ module Ted
   private
 
     def document_content(&block)
-      markup.office(:'document-content', attributes) { |dc| yield dc }
+      markup.office(:'document-content', attributes, &block)
     end
 
     def font_face(xml, index)
@@ -53,11 +53,11 @@ module Ted
     end
 
     def add_spreadsheet_to(xml, &block)
-      xml.office(:spreadsheet) { |s| yield s }
+      xml.office(:spreadsheet, &block)
     end
 
     def add_table_to(xml, &block)
-      xml.table(:table, table_attrs) { |tt| yield tt }
+      xml.table(:table, table_attrs, &block)
     end
 
     def add_table_column(xml)
