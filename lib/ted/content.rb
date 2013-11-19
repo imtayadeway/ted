@@ -11,7 +11,13 @@ module Ted
           add_spreadsheet_to(body) do |s|
             add_table_to(s) do |tt|
               add_table_column(tt)
-              add_table_row(tt)
+              add_table_row(tt) do |tr|
+                3.times do
+                  add_table_cell(tr, :string) do |tc| # or float, etc...
+                    tc.text(:p) { |t| 'a header' } # --> add the cell content
+                  end
+                end
+              end
             end
           end
         end
@@ -56,16 +62,12 @@ module Ted
       xml.table(:'table-column', table_column_attrs)
     end
 
-    def add_table_row(xml)
-      xml.table(:'table-row', table_row_attrs) do |tr|
-        3.times { add_table_cell(tr, :string) } # or float, etc...
-      end
+    def add_table_row(xml, &block)
+      xml.table(:'table-row', table_row_attrs, &block)
     end
 
-    def add_table_cell(xml, type)
-      xml.table(:'table-cell', 'office:value-type' => type) do |tc|
-        tc.text(:p) { |t| 'a header' } # --> add the cell content
-      end
+    def add_table_cell(xml, type, &block)
+      xml.table(:'table-cell', 'office:value-type' => type, &block)
     end
 
   public
