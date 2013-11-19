@@ -1,14 +1,5 @@
 module Ted
-  class Meta
-    attr_accessor :markup
-
-    include XmlDoc
-
-    def initialize
-      @markup = Builder::XmlMarkup.new(indent: 0)
-      markup.instruct! :xml, encoding: 'UTF-8'
-    end
-
+  class Meta < XmlDoc
     def generate
       document_meta do |dm|
         dm.office(:meta) do |m|
@@ -24,6 +15,20 @@ module Ted
 
     def document_meta(&block)
       markup.office(:'document-meta', document_meta_attrs, &block)
+    end
+
+  public
+
+    def document_meta_attrs
+      {
+        'xmlns:office'   => "urn:oasis:names:tc:opendocument:xmlns:office:1.0",
+        'xmlns:xlink'    => "http://www.w3.org/1999/xlink",
+        'xmlns:dc'       => "http://purl.org/dc/elements/1.1/",
+        'xmlns:meta'     => "urn:oasis:names:tc:opendocument:xmlns:meta:1.0",
+        'xmlns:ooo'      => "http://openoffice.org/2004/office",
+        'xmlns:grddl'    => "http://www.w3.org/2003/g/data-view#",
+        'office:version' => "1.2"
+      }
     end
   end
 end
