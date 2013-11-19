@@ -19,7 +19,7 @@ module Ted
               rows.each do |row|
                 add_table_row(tt) do |tr|
                   row.each do |cell|
-                    add_table_cell(tr, cell.type) do |tc|
+                    add_table_cell(tr, cell.format) do |tc|
                       tc.text(:p) { |t| cell.content }
                     end
                   end
