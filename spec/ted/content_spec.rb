@@ -18,7 +18,7 @@ module Ted
     end
 
     describe "#rows" do
-      specify { rows.should be_a_kind_of(Array) }
+      specify { subject.rows.should be_a_kind_of(Array) }
     end
 
     describe "#font_face_attrs" do
@@ -28,9 +28,6 @@ module Ted
       it "returns an array of hashes" do
         attrs.each { |a| a.should be_a_kind_of(Hash) }
       end
-    end
-
-    describe "#style" do
     end
 
     describe "#style_attrs" do
