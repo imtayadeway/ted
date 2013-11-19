@@ -3,10 +3,10 @@ module Ted
     def generate
       document_meta do |dm|
         dm.office(:meta) do |m|
-          m.meta(:'initial-creator') { |ic| }
-          m.meta(:'creation-date') { |cd| }
-          m.meta(:'document-statistic') { |ds| }
-          m.meta(:'generator') { |g| }
+          m.meta(:'initial-creator', ENV['USER'])
+          m.meta(:'creation-date', DateTime.now)
+          m.meta(:'document-statistic', document_statistic_attrs)
+          m.meta(:'generator', 'Ted')
         end
       end
     end
@@ -28,6 +28,14 @@ module Ted
         'xmlns:ooo'      => "http://openoffice.org/2004/office",
         'xmlns:grddl'    => "http://www.w3.org/2003/g/data-view#",
         'office:version' => "1.2"
+      }
+    end
+
+    def document_statistic_attrs
+      {
+        'meta:table-count' => "1",
+        'meta:cell-count' => "0",
+        'meta:object-count' => "0"
       }
     end
   end

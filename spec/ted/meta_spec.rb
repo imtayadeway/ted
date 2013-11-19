@@ -21,10 +21,10 @@ module Ted
       end
 
       specify { content.should =~ /<office:meta>/ }
-      specify { content.should =~ /<meta:initial-creator>/ }
-      specify { content.should =~ /<meta:creation-date>/ }
-      specify { content.should =~ /<meta:document-statistic/ }
-      specify { content.should =~ /<meta:generator>/ }
+      specify { content.should =~ /<meta:initial-creator>#{ ENV['USER'] }/ }
+      specify { content.should =~ /<meta:creation-date>#{ DateTime.now.to_s }/ }
+      specify { content.should =~ /<meta:document-statistic meta:table-count=/ }
+      specify { content.should =~ /<meta:generator>Ted/ }
     end
   end
 end
