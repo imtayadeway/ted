@@ -11,9 +11,14 @@ module Ted
     it { should respond_to(:style_table_attrs) }
     it { should respond_to(:table_attrs) }
     it { should respond_to(:style_table_tags) }
+    it { should respond_to(:rows) }
 
     describe "#markup" do
       specify { subject.markup.should be_a_kind_of(Builder::XmlMarkup) }
+    end
+
+    describe "#rows" do
+      specify { rows.should be_a_kind_of(Array) }
     end
 
     describe "#font_face_attrs" do
