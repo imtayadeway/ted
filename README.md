@@ -19,8 +19,8 @@ sheet = book.add_sheet(
   name: 'sheet 1',
   a: {id: :name, name: 'Name'},
   b: {id: :date, name: 'Date', format: :date},
-  c: {id: :charge, name: 'Charges', format: :currency}
-  d: {id: :percent, name: 'The Percentages', format: percent}
+  c: {id: :charge, name: "What's that gonna cost ya?", format: :currency}
+  d: {id: :percent, name: 'The Percentages', format: :percent}
 )
 
 # lots of dataset-generating code omitted
