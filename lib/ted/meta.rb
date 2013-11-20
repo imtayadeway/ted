@@ -1,6 +1,7 @@
 module Ted
   class Meta < XmlDoc
     def generate
+      # TODO: give ted a version
       document_meta do |dm|
         dm.office(:meta) do |m|
           m.meta(:'initial-creator', ENV['USER'])
@@ -32,9 +33,10 @@ module Ted
     end
 
     def document_statistic_attrs
+      # TODO: make these stats dynamic
       {
-        'meta:table-count' => "1",
-        'meta:cell-count' => "0",
+        'meta:table-count'  => "1",
+        'meta:cell-count'   => "0",
         'meta:object-count' => "0"
       }
     end
