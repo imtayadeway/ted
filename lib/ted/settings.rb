@@ -1,7 +1,16 @@
 module Ted
   class Settings < XmlDoc
     def generate
-      document_settings
+      document_settings do |ds|
+        ds.office(:settings) do |os|
+          os.config(:'config-item-set', config_item_set_attrs) do |cc|
+            cc.config(:'config-item', visible_area_top_attrs, 0)
+            cc.config(:'config-item', visible_area_left_attrs, 0)
+            cc.config(:'config-item', visible_area_width_attrs, 2257)
+            cc.config(:'config-item', visible_area_height_attrs, 463)
+          end
+        end
+      end
     end
 
   private
@@ -17,6 +26,38 @@ module Ted
         'xmlns:config'   => "urn:oasis:names:tc:opendocument:xmlns:config:1.0",
         'xmlns:ooo'      => "http://openoffice.org/2004/office",
         'office:version' => "1.2"
+      }
+    end
+
+    def config_item_set_attrs
+      { 'config:name' => "ooo:view-settings" }
+    end
+
+    def visible_area_top_attrs
+      {
+        'config:name' => "VisibleAreaTop",
+        'config:type' => "int"
+      }
+    end
+
+    def visible_area_left_attrs
+      {
+        'config:name' => "VisibleAreaLeft",
+        'config:type' => "int"
+      }
+    end
+
+    def visible_area_width_attrs
+      {
+        'config:name' => "VisibleAreaWidth",
+        'config:type' => "int"
+      }
+    end
+
+    def visible_area_height_attrs
+      {
+        'config:name' => "VisibleAreaLHeight",
+        'config:type' => "int"
       }
     end
   end
