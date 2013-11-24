@@ -1,14 +1,18 @@
 module Ted
   class Manifest < XmlDoc
     def generate
-      xml.manifest(:manifest, manifest_attrs) do |mm|
-        private_methods(false).drop(1).each do |attrs_method|
-          mm.manifest(:'file-entry', send(attrs_method))
+      xml.manifest(:manifest, manifest_attrs) do
+        file_entry_attrs.each do |attrs_method|
+          xml.manifest(:'file-entry', send(attrs_method))
         end
       end
     end
 
   private
+
+    def file_entry_attrs
+      private_methods(false).drop(2)
+    end
 
     def manifest_attrs
       {
