@@ -34,7 +34,7 @@ module Ted
   private
 
     def document_content(&block)
-      markup.office(:'document-content', document_content_attrs, &block)
+      xml.office(:'document-content', document_content_attrs, &block)
     end
 
     def font_face(xml, index)

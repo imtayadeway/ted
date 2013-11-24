@@ -16,7 +16,7 @@ module Ted
   private
 
     def document_settings(&block)
-      markup.office(:'document-settings', document_settings_attrs, &block)
+      xml.office(:'document-settings', document_settings_attrs, &block)
     end
 
     def document_settings_attrs

@@ -2,11 +2,11 @@ require 'spec_helper'
 
 module Ted
   describe Settings do
-    it { should respond_to(:markup) }
+    it { should respond_to(:xml) }
     it { should respond_to(:generate) }
 
-    describe "#markup" do
-      specify { subject.markup.should be_a_kind_of(Builder::XmlMarkup) }
+    describe "#xml" do
+      specify { subject.xml.should be_a_kind_of(Builder::XmlMarkup) }
     end
 
     describe "#generate" do

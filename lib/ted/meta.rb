@@ -2,23 +2,17 @@ module Ted
   class Meta < XmlDoc
     def generate
       # TODO: give ted a version
-      document_meta do |dm|
-        dm.office(:meta) do |m|
-          m.meta(:'initial-creator', ENV['USER'])
-          m.meta(:'creation-date', DateTime.now)
-          m.meta(:'document-statistic', document_statistic_attrs)
-          m.meta(:'generator', 'Ted')
+      xml.office(:'document-meta', document_meta_attrs) do
+        xml.office(:meta) do
+          xml.meta(:'initial-creator', ENV['USER'])
+          xml.meta(:'creation-date', DateTime.now)
+          xml.meta(:'document-statistic', document_statistic_attrs)
+          xml.meta(:'generator', 'Ted')
         end
       end
     end
 
   private
-
-    def document_meta(&block)
-      markup.office(:'document-meta', document_meta_attrs, &block)
-    end
-
-  public
 
     def document_meta_attrs
       {

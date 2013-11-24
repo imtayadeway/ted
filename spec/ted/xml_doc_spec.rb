@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Ted
   describe XmlDoc do
-    it { should respond_to(:markup) }
+    it { should respond_to(:xml) }
     it { should respond_to(:generate) }
 
     describe "#generate" do

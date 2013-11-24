@@ -3,7 +3,7 @@ require 'spec_helper'
 module Ted
   describe Content do
     it { should respond_to(:document_content_attrs) }
-    it { should respond_to(:markup) }
+    it { should respond_to(:xml) }
     it { should respond_to(:generate) }
     it { should respond_to(:book) }
     it { should respond_to(:font_face_attrs) }
@@ -13,8 +13,8 @@ module Ted
     it { should respond_to(:style_table_tags) }
     it { should respond_to(:rows) }
 
-    describe "#markup" do
-      specify { subject.markup.should be_a_kind_of(Builder::XmlMarkup) }
+    describe "#xml" do
+      specify { subject.xml.should be_a_kind_of(Builder::XmlMarkup) }
     end
 
     describe "#rows" do
