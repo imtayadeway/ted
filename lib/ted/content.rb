@@ -48,6 +48,7 @@ module Ted
       style_attrs.each_with_index { |attrs, i| style(attrs, i) }
     end
 
+    # TODO: factor this out to remove code duplication?
     def document_content_attrs
       {
         :'xmlns:office'       => "urn:oasis:names:tc:opendocument:xmlns:office:1.0",

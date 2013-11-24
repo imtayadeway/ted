@@ -40,6 +40,30 @@ module Ted
       specify { content.should =~ /style:font-name-complex="DejaVu Sans"/ }
       specify { content.should =~ /style:language-complex="hi" style:country-complex="IN"\/>/ }
       specify { content.should =~ /<number:number-style style:name="N0">/ }
+      specify { content.should =~ /<number:number number:min-integer-digits="1"\/>/ }
+      specify { content.should =~ /<number:currency-style style:name="N104P0" style:volatile="true">/ }
+      specify { content.should =~ /<number:currency-symbol number:language="en" number:country="US">\$<\/number:currency-symbol>/ }
+      specify { content.should =~ /<number:number number:decimal-places="2" number:min-integer-digits="1" number:grouping="true"\/>/ }
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+      specify { content.should =~ //}
+
 
     end
   end

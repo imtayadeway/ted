@@ -10,6 +10,12 @@ module Ted
           end
 
           xml.number(:'number-style', :'style:name' => "N0") do
+            xml.number(:number, :'number:min-integer-digits' => "1")
+          end
+
+          xml.number(:'currency-style', :'style:name' => "N104P0", :'style:volatile' => "true") do
+            xml.number(:'currency-symbol', '$', :'number:language' => "en", :'number:country' => "US")
+            xml.number(:number, :'number:decimal-places' => "2", :'number:min-integer-digits' => "1", :'number:grouping' => "true")
           end
 
         end
