@@ -23,6 +23,25 @@ module Ted
       specify { content.should =~ /<office:styles>/ }
       specify { content.should =~ /<office:automatic-styles>/ }
       specify { content.should =~ /<office:master-styles>/ }
+      specify { content.should =~ /<style:font-face style:name="Arial"/ }
+      specify { content.should =~ /svg:font-family="Arial"/ }
+      specify { content.should =~ /<style:font-face style:name="DejaVu Sans"/ }
+      #specify { content.should =~ /svg:font-family="&apos;DejaVu Sans&apos;"/ }
+      specify { content.should =~ /<style:font-face style:name="Lohit Hindi"/ }
+      #specify { content.should =~ /svg:font-family="&apos;Lohit Hindi&apos;"/ }
+      specify { content.should =~ /<style:font-face style:name="WenQuanYi Zen Hei"/ }
+      #specify { content.should =~ /svg:font-family="&apos;WenQuanYi Zen Hei&apos;"/ }
+      specify { content.should =~ /<style:default-style style:family="table-cell">/ }
+      specify { content.should =~ /<style:paragraph-properties style:tab-stop-distance="0.5in"\/>/ }
+      specify { content.should =~ /<style:text-properties style:font-name="Arial" / }
+      specify { content.should =~ /fo:language="en" fo:country="US"/ }
+      specify { content.should =~ /style:font-name-asian="DejaVu Sans"/ }
+      specify { content.should =~ /style:language-asian="zh" style:country-asian="CN"/ }
+      specify { content.should =~ /style:font-name-complex="DejaVu Sans"/ }
+      specify { content.should =~ /style:language-complex="hi" style:country-complex="IN"\/>/ }
+
+
+
     end
   end
 end

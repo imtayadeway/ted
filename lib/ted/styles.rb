@@ -4,6 +4,10 @@ module Ted
       xml.office(:'document-styles', document_styles_attrs) do
         xml.office(:'font-face-decls') { add_font_faces }
         xml.office(:styles) do
+          xml.style(:'default-style', 'style:family' => "table-cell") do
+            xml.style(:'paragraph-properties', 'style:tab-stop-distance' => "0.5in")
+            xml.style(:'text-properties', text_properties_attrs)
+          end
         end
         xml.office(:'automatic-styles') do
         end
@@ -13,6 +17,20 @@ module Ted
     end
 
   private
+
+    def text_properties_attrs
+      {
+        'style:font-name'         => "Arial",
+        'fo:language'             => "en",
+        'fo:country'              => "US",
+        'style:font-name-asian'   => "DejaVu Sans",
+        'style:language-asian'    => "zh",
+        'style:country-asian'     => "CN",
+        'style:font-name-complex' => "DejaVu Sans",
+        'style:language-complex'  => "hi",
+        'style:country-complex'   => "IN"
+      }
+    end
 
     # TODO: code duplication from content - extract out?
     def add_font_faces
@@ -34,21 +52,21 @@ module Ted
 
         {
           'style:name'                => "DejaVu Sans",
-          'svg:font-family'           => "&apos;DejaVu Sans&apos;",
+          'svg:font-family'           => "DejaVu Sans",
           'style:font-family-generic' => "system",
           'style:font-pitch'          => "variable"
         },
 
         {
           'style:name'                => "Lohit Hindi",
-          'svg:font-family'           => "&apos;Lohit Hindi&apos;",
+          'svg:font-family'           => "'Lohit Hindi'",
           'style:font-family-generic' => "system",
           'style:font-pitch'          => "variable"
         },
 
         {
           'style:name'                => "WenQuanYi Zen Hei",
-          'svg:font-family'           => "&apos;WenQuanYi Zen Hei&apos;",
+          'svg:font-family'           => "'WenQuanYi Zen Hei'",
           'style:font-family-generic' => "system",
           'style:font-pitch'          => "variable"
         }
