@@ -1,8 +1,8 @@
 module Ted
   class Settings < XmlDoc
     def generate
-      document_settings do |ds|
-        ds.office(:settings) do |os|
+      xml.office(:'document-settings', document_settings_attrs) do
+        xml.office(:settings) do |os|
           os.config(:'config-item-set', config_item_set_attrs) do |cc|
             cc.config(:'config-item', visible_area_top_attrs, 0)
             cc.config(:'config-item', visible_area_left_attrs, 0)
