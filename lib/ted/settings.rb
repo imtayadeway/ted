@@ -2,22 +2,18 @@ module Ted
   class Settings < XmlDoc
     def generate
       xml.office(:'document-settings', document_settings_attrs) do
-        xml.office(:settings) do |os|
-          os.config(:'config-item-set', config_item_set_attrs) do |cc|
-            cc.config(:'config-item', visible_area_top_attrs, 0)
-            cc.config(:'config-item', visible_area_left_attrs, 0)
-            cc.config(:'config-item', visible_area_width_attrs, 2257)
-            cc.config(:'config-item', visible_area_height_attrs, 463)
+        xml.office(:settings) do
+          xml.config(:'config-item-set', config_item_set_attrs) do
+            xml.config(:'config-item', visible_area_top_attrs, 0)
+            xml.config(:'config-item', visible_area_left_attrs, 0)
+            xml.config(:'config-item', visible_area_width_attrs, 2257)
+            xml.config(:'config-item', visible_area_height_attrs, 463)
           end
         end
       end
     end
 
   private
-
-    def document_settings(&block)
-      xml.office(:'document-settings', document_settings_attrs, &block)
-    end
 
     def document_settings_attrs
       {
