@@ -2,15 +2,9 @@ require 'spec_helper'
 
 module Ted
   describe Content do
-    it { should respond_to(:document_content_attrs) }
     it { should respond_to(:xml) }
     it { should respond_to(:generate) }
     it { should respond_to(:book) }
-    it { should respond_to(:font_face_attrs) }
-    it { should respond_to(:style_attrs) }
-    it { should respond_to(:style_table_attrs) }
-    it { should respond_to(:table_attrs) }
-    it { should respond_to(:style_table_tags) }
     it { should respond_to(:rows) }
 
     describe "#xml" do
@@ -19,24 +13,6 @@ module Ted
 
     describe "#rows" do
       specify { subject.rows.should be_a_kind_of(Array) }
-    end
-
-    describe "#font_face_attrs" do
-      let(:attrs) { subject.font_face_attrs }
-      specify { attrs.should be_a_kind_of(Array) }
-
-      it "returns an array of hashes" do
-        attrs.each { |a| a.should be_a_kind_of(Hash) }
-      end
-    end
-
-    describe "#style_attrs" do
-      let(:attrs) { subject.style_attrs }
-      specify { attrs.should be_a_kind_of(Array) }
-
-      it "returns an array of hashes" do
-        attrs.each { |a| a.should be_a_kind_of(Hash) }
-      end
     end
 
     describe "#generate" do
@@ -91,7 +67,7 @@ module Ted
 
       context "when asked for the office version" do
         it "returns 1.2" do
-          subject.document_content_attrs['office:version'].should == '1.2'
+          subject.document_content_attrs[:'office:version'].should == '1.2'
         end
       end
     end

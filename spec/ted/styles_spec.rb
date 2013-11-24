@@ -39,8 +39,7 @@ module Ted
       specify { content.should =~ /style:language-asian="zh" style:country-asian="CN"/ }
       specify { content.should =~ /style:font-name-complex="DejaVu Sans"/ }
       specify { content.should =~ /style:language-complex="hi" style:country-complex="IN"\/>/ }
-
-
+      specify { content.should =~ /<number:number-style style:name="N0">/ }
 
     end
   end
