@@ -48,9 +48,6 @@ module Ted
       style_attrs.each_with_index { |attrs, i| style(attrs, i) }
     end
 
-  public
-  # TODO: make all these methods private
-
     def document_content_attrs
       {
         :'xmlns:office'       => "urn:oasis:names:tc:opendocument:xmlns:office:1.0",

@@ -61,15 +61,5 @@ module Ted
       specify { content.should =~ /table:number-columns-repeated/ }
       specify { content.should =~ /table:default-cell-style-name/ }
     end
-
-    describe "#document_content_attrs" do
-      specify { subject.document_content_attrs.should be_a_kind_of(Hash) }
-
-      context "when asked for the office version" do
-        it "returns 1.2" do
-          subject.document_content_attrs[:'office:version'].should == '1.2'
-        end
-      end
-    end
   end
 end
