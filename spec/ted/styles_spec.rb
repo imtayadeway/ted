@@ -20,7 +20,7 @@ module Ted
         end
       end
 
-      specify { content.should =~ /<office:meta>/ }
+      specify { content.should =~ /<office:styles>/ }
     end
   end
 end

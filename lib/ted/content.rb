@@ -35,12 +35,12 @@ module Ted
 
   private
 
-    def font_face(index)
-      xml.style(:'font-face', font_face_attrs[index])
+    def font_face(attrs)
+      xml.style(:'font-face', attrs)
     end
 
-    def style(index)
-      xml.style(:style, style_attrs[index]) { style_table(index) }
+    def style(attrs, index)
+      xml.style(:style, attrs) { style_table(index) }
     end
 
     def style_table(index)
@@ -48,11 +48,12 @@ module Ted
     end
 
     def add_font_faces
-      font_face_attrs.size.times { |i| font_face(i) }
+      font_face_attrs.each { |attrs| font_face(attrs) }
     end
 
+    # TODO: refactor this to stop passing indexes around
     def add_styles
-      style_attrs.size.times { |i| style(i) }
+      style_attrs.each_with_index { |attrs, i| style(attrs, i) }
     end
 
   public
