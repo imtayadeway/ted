@@ -21,6 +21,8 @@ module Ted
       end
 
       specify { content.should =~ /<office:styles>/ }
+      specify { content.should =~ /<office:automatic-styles>/ }
+      specify { content.should =~ /<office:master-styles>/ }
     end
   end
 end

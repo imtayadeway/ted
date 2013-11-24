@@ -5,11 +5,16 @@ module Ted
         xml.office(:'font-face-decls') { add_font_faces }
         xml.office(:styles) do
         end
+        xml.office(:'automatic-styles') do
+        end
+        xml.office(:'master-styles') do
+        end
       end
     end
 
   private
 
+    # TODO: code duplication from content - extract out?
     def add_font_faces
       font_face_attrs.each { |attrs| font_face(attrs) }
     end
