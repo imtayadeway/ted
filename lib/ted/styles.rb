@@ -18,6 +18,16 @@ module Ted
             xml.number(:number, :'number:decimal-places' => "2", :'number:min-integer-digits' => "1", :'number:grouping' => "true")
           end
 
+          xml.number(:'currency-style', :'style:name' => "N104") do
+            xml.style(:'text-properties', :'fo:color' => "#ff0000")
+            xml.number(:text, '-')
+            xml.number(:'currency-symbol', '$', :'number:language' => "en", :'number:country' => "US")
+            xml.number(:number, :'number:decimal-places' => "2", :'number:min-integer-digits' => "1", :'number:grouping' => "true")
+            xml.style(:nap, :'style:condition' => "value()&gt;=0", :'style:apply-style-name' => "N104P0")
+          end
+
+
+
         end
         xml.office(:'automatic-styles') do
         end

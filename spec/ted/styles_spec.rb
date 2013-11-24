@@ -26,11 +26,8 @@ module Ted
       specify { content.should =~ /<style:font-face style:name="Arial"/ }
       specify { content.should =~ /svg:font-family="Arial"/ }
       specify { content.should =~ /<style:font-face style:name="DejaVu Sans"/ }
-      #specify { content.should =~ /svg:font-family="&apos;DejaVu Sans&apos;"/ }
       specify { content.should =~ /<style:font-face style:name="Lohit Hindi"/ }
-      #specify { content.should =~ /svg:font-family="&apos;Lohit Hindi&apos;"/ }
       specify { content.should =~ /<style:font-face style:name="WenQuanYi Zen Hei"/ }
-      #specify { content.should =~ /svg:font-family="&apos;WenQuanYi Zen Hei&apos;"/ }
       specify { content.should =~ /<style:default-style style:family="table-cell">/ }
       specify { content.should =~ /<style:paragraph-properties style:tab-stop-distance="0.5in"\/>/ }
       specify { content.should =~ /<style:text-properties style:font-name="Arial" / }
@@ -44,6 +41,9 @@ module Ted
       specify { content.should =~ /<number:currency-style style:name="N104P0" style:volatile="true">/ }
       specify { content.should =~ /<number:currency-symbol number:language="en" number:country="US">\$<\/number:currency-symbol>/ }
       specify { content.should =~ /<number:number number:decimal-places="2" number:min-integer-digits="1" number:grouping="true"\/>/ }
+      specify { content.should =~ /<number:currency-style style:name="N104">/ }
+      specify { content.should =~ /<style:text-properties fo:color="#ff0000"\/>/ }
+      specify { content.should =~ /<number:text>-<\/number:text>/ }
       specify { content.should =~ //}
       specify { content.should =~ //}
       specify { content.should =~ //}
@@ -59,10 +59,7 @@ module Ted
       specify { content.should =~ //}
       specify { content.should =~ //}
       specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
+
 
 
     end
