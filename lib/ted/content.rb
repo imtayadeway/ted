@@ -8,19 +8,21 @@ module Ted
     end
 
     def generate
-      document_content do |dc|
-        dc.office(:scripts)
-        dc.office(:'font-face-decls') { |ffd| add_font_faces_to(ffd) }
-        dc.office(:'automatic-styles') { |as| add_styles_to(as) }
-        dc.office(:body) do |body|
-          add_spreadsheet_to(body) do |s|
-            add_table_to(s) do |tt|
-              add_table_column(tt)
+      xml.office(:'document-content', document_content_attrs) do
+        xml.office(:scripts)
+        xml.office(:'font-face-decls') { add_font_faces }
+        xml.office(:'automatic-styles') { add_styles }
+        xml.office(:body) do
+          xml.office(:spreadsheet) do
+            xml.table(:table, table_attrs) do
+              xml.table(:'table-column', table_column_attrs)
+
               rows.each do |row|
-                add_table_row(tt) do |tr|
+                xml.table(:'table-row', table_row_attrs) do
+
                   row.each do |cell|
-                    add_table_cell(tr, cell.format) do |tc|
-                      tc.text(:p) { |t| cell.content }
+                    xml.table(:'table-cell', 'office:value-type' => cell.format) do
+                      xml.text(:p, cell.content)
                     end
                   end
                 end
@@ -33,51 +35,28 @@ module Ted
 
   private
 
-    def document_content(&block)
-      xml.office(:'document-content', document_content_attrs, &block)
-    end
-
-    def font_face(xml, index)
+    def font_face(index)
       xml.style(:'font-face', font_face_attrs[index])
     end
 
-    def style(xml, index)
-      xml.style(:style, style_attrs[index]) { |ss| style_table(ss, index) }
+    def style(index)
+      xml.style(:style, style_attrs[index]) { style_table(index) }
     end
 
-    def style_table(xml, index)
+    def style_table(index)
       xml.style(style_table_tags[index], style_table_attrs[index])
     end
 
-    def add_font_faces_to(xml)
-      font_face_attrs.size.times { |i| font_face(xml, i) }
+    def add_font_faces
+      font_face_attrs.size.times { |i| font_face(i) }
     end
 
-    def add_styles_to(xml)
-      style_attrs.size.times { |i| style(xml, i) }
-    end
-
-    def add_spreadsheet_to(xml, &block)
-      xml.office(:spreadsheet, &block)
-    end
-
-    def add_table_to(xml, &block)
-      xml.table(:table, table_attrs, &block)
-    end
-
-    def add_table_column(xml)
-      xml.table(:'table-column', table_column_attrs)
-    end
-
-    def add_table_row(xml, &block)
-      xml.table(:'table-row', table_row_attrs, &block)
-    end
-
-    def add_table_cell(xml, type, &block)
-      xml.table(:'table-cell', 'office:value-type' => type, &block)
+    def add_styles
+      style_attrs.size.times { |i| style(i) }
     end
 
   public
+  # TODO: make all these methods private
 
     def document_content_attrs
       {
