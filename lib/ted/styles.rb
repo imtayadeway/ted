@@ -26,7 +26,19 @@ module Ted
             xml.style(:nap, :'style:condition' => "value()&gt;=0", :'style:apply-style-name' => "N104P0")
           end
 
+          xml.style(:style, :'style:name' => "Default", :'style:family' => "table-cell") do
+          end
 
+          xml.style(:style, :'style:name' => "Result", :'style:family' => "table-cell", :'style:parent-style-name' => "Default") do
+          end
+
+          xml.style(:style, :'style:name' => "Result2", :'style:family' => "table-cell", :'style:parent-style-name' => "Result", :'style:data-style-name' => "N104")
+
+          xml.style(:style, :'style:name' => "Heading", :'style:family' => "table-cell", :'style:parent-style-name' => "Default") do
+          end
+
+          xml.style(:style, :'style:name' => "Heading1", :'style:family' => "table-cell", :'style:parent-style-name' => "Heading") do
+          end
 
         end
         xml.office(:'automatic-styles') do

@@ -44,11 +44,11 @@ module Ted
       specify { content.should =~ /<number:currency-style style:name="N104">/ }
       specify { content.should =~ /<style:text-properties fo:color="#ff0000"\/>/ }
       specify { content.should =~ /<number:text>-<\/number:text>/ }
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
+      specify { content.should =~ /<style:style style:name="Default" style:family="table-cell">/ }
+      specify { content.should =~ /<style:style style:name="Result" style:family="table-cell" style:parent-style-name="Default">/ }
+      specify { content.should =~ /<style:style style:name="Result2" style:family="table-cell" style:parent-style-name="Result" style:data-style-name="N104"\/>/ }
+      specify { content.should =~ /<style:style style:name="Heading" style:family="table-cell" style:parent-style-name="Default">/ }
+      specify { content.should =~ /<style:style style:name="Heading1" style:family="table-cell" style:parent-style-name="Heading">/ }
       specify { content.should =~ //}
       specify { content.should =~ //}
       specify { content.should =~ //}
