@@ -49,19 +49,32 @@ module Ted
       specify { content.should =~ /<style:style style:name="Result2" style:family="table-cell" style:parent-style-name="Result" style:data-style-name="N104"\/>/ }
       specify { content.should =~ /<style:style style:name="Heading" style:family="table-cell" style:parent-style-name="Default">/ }
       specify { content.should =~ /<style:style style:name="Heading1" style:family="table-cell" style:parent-style-name="Heading">/ }
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-      specify { content.should =~ //}
-
-
-
+      specify { content.should =~ /<style:text-properties style:font-name-asian="WenQuanYi Zen Hei"/ }
+      specify { content.should =~ /style:font-family-generic-complex="system" style:font-pitch-complex="variable"\/>/ }
+      specify { content.should =~ /<style:text-properties fo:font-style="italic" style:text-underline-style="solid" style:text-underline-width="auto" style:text-underline-color="font-color" fo:font-weight="bold"\/>/ }
+      specify { content.should =~ /<style:table-cell-properties style:text-align-source="fix" style:repeat-content="false"\/>/ }
+      specify { content.should =~ /<style:paragraph-properties fo:text-align="center"\/>/ }
+      specify { content.should =~ /<style:text-properties fo:font-size="16pt" fo:font-style="italic" fo:font-weight="bold"\/>/ }
+      specify { content.should =~ /<style:table-cell-properties style:rotation-angle="90"\/>/ }
+      specify { content.should =~ /<style:page-layout style:name="Mpm1">/ }
+      specify { content.should =~ /<style:page-layout style:name="Mpm2">/ }
+      specify { content.should =~ /<style:master-page style:name="Default" style:page-layout-name="Mpm1">/ }
+      specify { content.should =~ /<style:master-page style:name="Report" style:page-layout-name="Mpm2">/ }
+      specify { content.should =~ /<style:page-layout-properties style:writing-mode="lr-tb"\/>/ }
+      specify { content.should =~ /<style:header-style>/ }
+      specify { content.should =~ /<style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-bottom="0.0984in"\/>/ }
+      specify { content.should =~ /<style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0.0984in"\/>/ }
+      specify { content.should =~ /<style:page-layout-properties style:writing-mode="lr-tb"\/>/ }
+      specify { content.should =~ /<style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-bottom="0.0984in" fo:border="2.49pt solid #000000" fo:padding="0.0071in" fo:background-color="#c0c0c0">/ }
+      specify { content.should =~ /<style:background-image\/>/ }
+      specify { content.should =~ /<style:footer-style>/ }
+      specify { content.should =~ /<style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0.0984in" fo:border="2.49pt solid #000000" fo:padding="0.0071in" fo:background-color="#c0c0c0">/ }
+      specify { content.should =~ // }
+      specify { content.should =~ // }
+      specify { content.should =~ // }
+      specify { content.should =~ // }
+      specify { content.should =~ // }
+      specify { content.should =~ // }
     end
   end
 end

@@ -27,23 +27,62 @@ module Ted
           end
 
           xml.style(:style, :'style:name' => "Default", :'style:family' => "table-cell") do
+            xml.style(:'text-properties', :'style:font-name-asian' => "WenQuanYi Zen Hei", :'style:font-family-asian' => '&apos;WenQuanYi Zen Hei&apos;', :'style:font-family-generic-asian' => 'system', :'style:font-pitch-asian' => 'variable', :'style:font-name-complex' => 'Lohit Hindi', :'style:font-family-complex' => '&apos;Lohit Hindi&apos;', :'style:font-family-generic-complex' => 'system', :'style:font-pitch-complex' => 'variable')
           end
 
           xml.style(:style, :'style:name' => "Result", :'style:family' => "table-cell", :'style:parent-style-name' => "Default") do
+            xml.style(:'text-properties', :'fo:font-style' => 'italic', :'style:text-underline-style' => 'solid', :'style:text-underline-width' => 'auto', :'style:text-underline-color' => 'font-color', :'fo:font-weight' => 'bold')
           end
 
           xml.style(:style, :'style:name' => "Result2", :'style:family' => "table-cell", :'style:parent-style-name' => "Result", :'style:data-style-name' => "N104")
 
           xml.style(:style, :'style:name' => "Heading", :'style:family' => "table-cell", :'style:parent-style-name' => "Default") do
+            xml.style(:'table-cell-properties', :'style:text-align-source' => 'fix', :'style:repeat-content' => 'false')
+            xml.style(:'paragraph-properties', :'fo:text-align' => 'center')
+            xml.style(:'text-properties', :'fo:font-size' => '16pt', :'fo:font-style' => 'italic', :'fo:font-weight' => 'bold')
           end
 
           xml.style(:style, :'style:name' => "Heading1", :'style:family' => "table-cell", :'style:parent-style-name' => "Heading") do
+            xml.style(:'table-cell-properties', :'style:rotation-angle' => '90')
           end
 
         end
         xml.office(:'automatic-styles') do
+          xml.style(:'page-layout', :'style:name' => 'Mpm1') do
+            xml.style(:'page-layout-properties', :'style:writing-mode' => 'lr-tb')
+            xml.style(:'header-style') do
+              xml.style(:'header-footer-properties', :'fo:min-height' => '0.2953in', :'fo:margin-left' => '0in', :'fo:margin-right' => '0in', :'fo:margin-bottom' => '0.0984in')
+            end
+
+            xml.style(:'footer-style') do
+              xml.style(:'header-footer-properties', :'fo:min-height' => '0.2953in', :'fo:margin-left' => '0in', :'fo:margin-right' => '0in', :'fo:margin-top' => '0.0984in')
+            end
+          end
+
+          xml.style(:'page-layout', :'style:name' => 'Mpm2') do
+            xml.style(:'page-layout-properties', :'style:writing-mode' => 'lr-tb')
+            xml.style(:'header-style') do
+              xml.style(:'header-footer-properties', :'fo:min-height' => '0.2953in', :'fo:margin-left' => '0in', :'fo:margin-right' => '0in', :'fo:margin-bottom' => '0.0984in', :'fo:border' => '2.49pt solid #000000', :'fo:padding' => '0.0071in', :'fo:background-color' => '#c0c0c0') do
+                xml.style(:'background-image')
+              end
+            end
+
+            xml.style(:'footer-style') do
+              xml.style(:'header-footer-properties', :'fo:min-height' => '0.2953in', :'fo:margin-left' => '0in', :'fo:margin-right' => '0in', :'fo:margin-top' => '0.0984in', :'fo:border' => '2.49pt solid #000000', :'fo:padding' => '0.0071in', :'fo:background-color' => '#c0c0c0') do
+                xml.style(:'background-image')
+              end
+            end
+
+
+          end
         end
+
         xml.office(:'master-styles') do
+          xml.style(:'master-page', :'style:name' => 'Default', :'style:page-layout-name' => 'Mpm1') do
+          end
+
+          xml.style(:'master-page', :'style:name' => 'Report', :'style:page-layout-name' => 'Mpm2') do
+          end
         end
       end
     end
