@@ -72,16 +72,62 @@ module Ted
                 xml.style(:'background-image')
               end
             end
-
-
           end
         end
 
         xml.office(:'master-styles') do
           xml.style(:'master-page', :'style:name' => 'Default', :'style:page-layout-name' => 'Mpm1') do
+            xml.style(:header) do
+              xml.text(:p) do
+                xml.text(:'sheet-name', '???')
+              end
+            end
+
+            xml.style(:'header-left', :'style:display' => 'false')
+
+            xml.style(:footer) do
+              xml.text(:p) do
+                xml.text! 'Page '
+                xml.text(:'page-number', '1')
+              end
+            end
+
+            xml.style(:'footer-left', :'style:display' => 'false')
           end
 
           xml.style(:'master-page', :'style:name' => 'Report', :'style:page-layout-name' => 'Mpm2') do
+            xml.style(:header) do
+              xml.style(:'region-left') do
+                xml.text(:p) do
+                  xml.text(:'sheet-name', '???')
+                  xml.text! ' ('
+                  xml.text(:title, '???')
+                  xml.text!  ')'
+                end
+              end
+
+              xml.style(:'region-right') do
+                xml.text(:p) do
+                  # TODO: needs date today
+                  xml.text(:date, '00/00/0000', :'style:data-style-name' => 'N2', :'text:date-value' => "2013-11-03")
+                  xml.text! ', '
+                  xml.text(:time, '00:00:00')
+                end
+              end
+            end
+
+            xml.style(:'header-left', :'style:display' => 'false')
+
+            xml.style(:footer) do
+              xml.text(:p) do
+                xml.text! 'Page '
+                xml.text(:'page-number', '1')
+                xml.text! ' / '
+                xml.text(:'page-count', '99')
+              end
+            end
+
+            xml.style(:'footer-left', :'style:display' => 'false')
           end
         end
       end

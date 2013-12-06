@@ -69,12 +69,17 @@ module Ted
       specify { content.should =~ /<style:background-image\/>/ }
       specify { content.should =~ /<style:footer-style>/ }
       specify { content.should =~ /<style:header-footer-properties fo:min-height="0.2953in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0.0984in" fo:border="2.49pt solid #000000" fo:padding="0.0071in" fo:background-color="#c0c0c0">/ }
-      specify { content.should =~ // }
-      specify { content.should =~ // }
-      specify { content.should =~ // }
-      specify { content.should =~ // }
-      specify { content.should =~ // }
-      specify { content.should =~ // }
+      specify { content.should =~ /<style:header>/ }
+      specify { content.should =~ /<text:p><text:sheet-name>\?\?\?<\/text:sheet-name><\/text:p>/ }
+      specify { content.should =~ /<style:header-left style:display="false"\/>/ }
+      specify { content.should =~ /<style:footer>/ }
+      specify { content.should =~ /<text:p>Page <text:page-number>1<\/text:page-number><\/text:p>/ }
+      specify { content.should =~ /<style:footer-left style:display="false"\/>/ }
+      specify { content.should =~ /<style:region-left>/ }
+      specify { content.should =~ /<text:p><text:sheet-name>\?\?\?<\/text:sheet-name> \(<text:title>\?\?\?<\/text:title>\)<\/text:p>/ }
+      specify { content.should =~ /<style:region-right>/ }
+      specify { content.should =~ /<text:p><text:date style:data-style-name="N2" text:date-value="2013-11-03">00\/00\/0000<\/text:date>, <text:time>00:00:00<\/text:time><\/text:p>/ }
+      specify { content.should =~ /<text:p>Page <text:page-number>1<\/text:page-number> \/ <text:page-count>99<\/text:page-count><\/text:p>/ }
     end
   end
 end
