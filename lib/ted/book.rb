@@ -6,18 +6,15 @@ module Ted
       end
     end
 
-    attr_accessor :filename
+    attr_accessor :filename, :sheets
 
     def initialize(filename)
       @filename = filename
+      @sheets = Ted::Sheets.new
     end
 
     def add_sheet(options = {})
-      sheets.build(options)
-    end
-
-    def sheets
-      @sheets ||= Ted::Sheets.new
+      sheets.add_sheet(options)
     end
 
     def save
