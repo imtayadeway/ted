@@ -4,6 +4,18 @@ module Ted
   describe Meta do
     it { should respond_to(:xml) }
     it { should respond_to(:generate) }
+    it { should respond_to(:write) }
+    it { should respond_to(:file) }
+
+    its(:file) { should be_a_kind_of(Tempfile) }
+
+    describe "#write" do
+      it "writes the content to file" do
+        expect {
+          subject.write
+        }.to change { subject.file.read }
+      end
+    end
 
     describe "#xml" do
       specify { subject.xml.should be_a_kind_of(Builder::XmlMarkup) }

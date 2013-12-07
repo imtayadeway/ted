@@ -12,6 +12,15 @@ module Ted
       end
     end
 
+    def file
+      @file ||= Tempfile.new(['meta', '.xml'])
+    end
+
+    def write
+      file.write(generate)
+      file.rewind
+    end
+
   private
 
     def document_meta_attrs
