@@ -1,6 +1,6 @@
 module Ted
   class Meta < XmlDoc
-    def generate
+    def content
       # TODO: give ted a version
       xml.office(:'document-meta', document_meta_attrs) do
         xml.office(:meta) do
@@ -17,7 +17,7 @@ module Ted
     end
 
     def write
-      file.write(generate)
+      file.write(content)
       file.rewind
     end
 
