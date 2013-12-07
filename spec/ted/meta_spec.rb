@@ -3,7 +3,7 @@ require 'spec_helper'
 module Ted
   describe Meta do
     it { should respond_to(:xml) }
-    it { should respond_to(:generate) }
+    it { should respond_to(:content) }
     it { should respond_to(:write) }
     it { should respond_to(:file) }
 

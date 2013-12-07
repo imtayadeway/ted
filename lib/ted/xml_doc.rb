@@ -7,8 +7,8 @@ module Ted
       xml.instruct! :xml, encoding: 'UTF-8'
     end
 
-    def generate
-      raise NotImplementedError, 'You must implement #generate'
+    def content
+      raise NotImplementedError, 'You must implement #content'
     end
 
   private

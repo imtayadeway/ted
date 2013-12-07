@@ -1,6 +1,6 @@
 module Ted
   class Settings < XmlDoc
-    def generate
+    def content
       xml.office(:'document-settings', document_settings_attrs) do
         xml.office(:settings) do
           xml.config(:'config-item-set', config_item_set_attrs) do

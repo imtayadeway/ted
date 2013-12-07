@@ -3,14 +3,14 @@ require 'spec_helper'
 module Ted
   describe Settings do
     it { should respond_to(:xml) }
-    it { should respond_to(:generate) }
+    it { should respond_to(:content) }
 
     describe "#xml" do
       specify { subject.xml.should be_a_kind_of(Builder::XmlMarkup) }
     end
 
-    describe "#generate" do
-      let(:content) { subject.generate }
+    describe "#content" do
+      let(:content) { subject.content }
 
       specify { content.should be_a_kind_of(String) }
 

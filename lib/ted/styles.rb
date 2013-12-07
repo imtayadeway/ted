@@ -1,6 +1,6 @@
 module Ted
   class Styles < XmlDoc
-    def generate
+    def content
       xml.office(:'document-styles', document_styles_attrs) do
         xml.office(:'font-face-decls') { add_font_faces }
         xml.office(:styles) do

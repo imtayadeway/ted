@@ -7,7 +7,7 @@ module Ted
       @rows = rows
     end
 
-    def generate
+    def content
       xml.office(:'document-content', document_content_attrs) do
         xml.office(:scripts)
         xml.office(:'font-face-decls') { add_font_faces }

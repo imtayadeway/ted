@@ -1,6 +1,6 @@
 module Ted
   class Manifest < XmlDoc
-    def generate
+    def content
       xml.manifest(:manifest, manifest_attrs) do
         file_entry_attrs.each do |attrs_method|
           xml.manifest(:'file-entry', send(attrs_method))

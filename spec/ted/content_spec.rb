@@ -3,7 +3,7 @@ require 'spec_helper'
 module Ted
   describe Content do
     it { should respond_to(:xml) }
-    it { should respond_to(:generate) }
+    it { should respond_to(:content) }
     it { should respond_to(:book) }
     it { should respond_to(:rows) }
 
@@ -15,8 +15,8 @@ module Ted
       specify { subject.rows.should be_a_kind_of(Array) }
     end
 
-    describe "#generate" do
-      let(:content) { subject.generate }
+    describe "#content" do
+      let(:content) { subject.content }
 
       specify { content.should be_a_kind_of(String) }
 
