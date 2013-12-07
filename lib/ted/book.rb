@@ -18,7 +18,7 @@ module Ted
     end
 
     def save
-      #
+      File.new("#{ filename }.ods", 'w')
     end
   end
 end

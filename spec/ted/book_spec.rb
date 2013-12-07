@@ -28,6 +28,14 @@ module Ted
       specify { subject.sheets.should be_an_instance_of(Ted::Sheets) }
     end
 
+    describe "#save" do
+      after { File.exist?('filename.ods') && File.delete('filename.ods') }
 
+      it "creates a new file" do
+        expect {
+          subject.save
+        }.to change{ File.exist?('filename.ods') }.to(true)
+      end
+    end
   end
 end
