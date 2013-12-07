@@ -4,7 +4,7 @@ module Ted
       xml.office(:'document-styles', document_styles_attrs) do
         xml.office(:'font-face-decls') { add_font_faces }
         xml.office(:styles) do
-          xml.style(:'default-style', 'style:family' => "table-cell") do
+          xml.style(:'default-style', default_style_attrs) do
             xml.style(:'paragraph-properties', 'style:tab-stop-distance' => "0.5in")
             xml.style(:'text-properties', text_properties_attrs)
           end
@@ -27,11 +27,11 @@ module Ted
           end
 
           xml.style(:style, :'style:name' => "Default", :'style:family' => "table-cell") do
-            xml.style(:'text-properties', :'style:font-name-asian' => "WenQuanYi Zen Hei", :'style:font-family-asian' => '&apos;WenQuanYi Zen Hei&apos;', :'style:font-family-generic-asian' => 'system', :'style:font-pitch-asian' => 'variable', :'style:font-name-complex' => 'Lohit Hindi', :'style:font-family-complex' => '&apos;Lohit Hindi&apos;', :'style:font-family-generic-complex' => 'system', :'style:font-pitch-complex' => 'variable')
+            xml.style(:'text-properties', default_text_properties_attrs)
           end
 
           xml.style(:style, :'style:name' => "Result", :'style:family' => "table-cell", :'style:parent-style-name' => "Default") do
-            xml.style(:'text-properties', :'fo:font-style' => 'italic', :'style:text-underline-style' => 'solid', :'style:text-underline-width' => 'auto', :'style:text-underline-color' => 'font-color', :'fo:font-weight' => 'bold')
+            xml.style(:'text-properties', result_text_properties_attrs)
           end
 
           xml.style(:style, :'style:name' => "Result2", :'style:family' => "table-cell", :'style:parent-style-name' => "Result", :'style:data-style-name' => "N104")
@@ -181,6 +181,33 @@ module Ted
         :'xmlns:calcext'      => "urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0",
         :'xmlns:css3t'        => "http://www.w3.org/TR/css3-text/",
         :'office:version'     => "1.2"
+      }
+    end
+
+    def default_style_attrs
+      {'style:family' => "table-cell"}
+    end
+
+    def default_text_properties_attrs
+      {
+        :'style:font-name-asian' => "WenQuanYi Zen Hei",
+        :'style:font-family-asian' => '&apos;WenQuanYi Zen Hei&apos;',
+        :'style:font-family-generic-asian' => 'system',
+        :'style:font-pitch-asian' => 'variable',
+        :'style:font-name-complex' => 'Lohit Hindi',
+        :'style:font-family-complex' => '&apos;Lohit Hindi&apos;',
+        :'style:font-family-generic-complex' => 'system',
+        :'style:font-pitch-complex' => 'variable'
+      }
+    end
+
+    def result_text_properties_attrs
+      {
+        :'fo:font-style' => 'italic',
+        :'style:text-underline-style' => 'solid',
+        :'style:text-underline-width' => 'auto',
+        :'style:text-underline-color' => 'font-color',
+        :'fo:font-weight' => 'bold'
       }
     end
   end
