@@ -8,6 +8,8 @@ module Ted
     it { should respond_to(:sheets) }
     it { should respond_to(:add_sheet) }
     it { should respond_to(:save) }
+    it { should respond_to(:add_sheet) }
+    it { should respond_to(:sheetnames) }
 
     describe ".build" do
       specify { Book.should respond_to(:build) }
@@ -25,7 +27,19 @@ module Ted
     end
 
     describe "#sheets" do
-      specify { subject.sheets.should be_an_instance_of(Ted::Sheets) }
+      specify { subject.sheets.should be_an_instance_of(Array) }
+    end
+    
+    describe "#add_sheet" do
+      context "with no arguments" do
+        it "returns an instance of Sheet" do
+          subject.add_sheet.should be_an_instance_of(Ted::Sheet)
+        end
+
+        specify "the sheet returned has a name generated for it" do
+          subject.add_sheet.name.should =~ /Sheet 1/
+        end
+      end
     end
 
     describe "#save" do
