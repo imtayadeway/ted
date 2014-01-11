@@ -10,6 +10,17 @@ module Ted
     it { should respond_to(:save) }
     it { should respond_to(:add_sheet) }
     it { should respond_to(:sheetnames) }
+    it { should respond_to(:content) }
+    it { should respond_to(:manifest) }
+    it { should respond_to(:meta) }
+    it { should respond_to(:settings) }
+    it { should respond_to(:styles) }
+    
+    its(:content) { should be_an_instance_of(Ted::Content) }
+    its(:manifest) { should be_an_instance_of(Ted::Manifest) }
+    its(:meta) { should be_an_instance_of(Ted::Meta) }
+    its(:settings) { should be_an_instance_of(Ted::Settings) }
+    its(:styles) { should be_an_instance_of(Ted::Styles) }
 
     describe ".build" do
       specify { Book.should respond_to(:build) }

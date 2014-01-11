@@ -6,11 +6,17 @@ module Ted
       end
     end
 
-    attr_accessor :filename, :sheets
+    attr_accessor :filename, :sheets 
+    attr_reader :content, :manifest, :meta, :settings, :styles
 
     def initialize(filename)
       @filename = filename
       @sheets = []
+      @content = Ted::Content.new
+      @manifest = Ted::Manifest.new
+      @meta = Ted::Meta.new
+      @settings = Ted::Settings.new
+      @styles = Ted::Styles.new
     end
 
     def add_sheet(options = {})
