@@ -1,4 +1,4 @@
-book = Ted::Book.build(filename: 'sample')
+book = Ted::Book.build('sample', '/path/to/folder')
 sheet = book.add_sheet(
   name: 'sheet 1',
      a: {id: :data_1, name: 'a header'},

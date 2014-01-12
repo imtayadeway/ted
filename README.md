@@ -14,7 +14,7 @@ it is being made partly in response to the lack of:
 in many other spreadsheet generators. the initial aim is to be able to create a complete spreadsheet from a dataset that conforms to a certain structure (typically an array of hashes) in a few steps, in a way that I would want to create a spreadsheet 99% of the time. ideally it should look something like this:
 
 ```ruby
-book = Ted::Book.build(filename: 'sample')
+book = Ted::Book.build('sample', '/path/to/folder/')
 sheet = book.add_sheet(
   name: 'sheet 1',
   a: {id: :name, name: 'Name'},
