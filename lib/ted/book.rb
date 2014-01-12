@@ -30,19 +30,15 @@ module Ted
     def sheetnames
       sheets.map(&:name)
     end
-    
-    def compose
-      xml_docs.each { |xml_doc| xml_doc.write }
-    end
 
     def save
       Zip::File.open(fqn, Zip::File::CREATE) do |zipfile|
         xml_docs.each do |xml_doc|
+          xml_doc.write
           zipfile.add(xml_doc.full_name, xml_doc.path)
+          xml_doc.close
         end
       end
-      
-      xml_docs.each(&:close)
     end
     
     def fqn
