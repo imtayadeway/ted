@@ -12,6 +12,10 @@ module Ted
         end
       end
     end
+    
+    def name
+      'settings'
+    end
 
   private
 

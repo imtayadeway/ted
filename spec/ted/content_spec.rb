@@ -2,14 +2,10 @@ require 'spec_helper'
 
 module Ted
   describe Content do
-    it { should respond_to(:xml) }
-    it { should respond_to(:content) }
+    it_behaves_like "an xml doc"
+    
     it { should respond_to(:book) }
     it { should respond_to(:rows) }
-
-    describe "#xml" do
-      specify { subject.xml.should be_a_kind_of(Builder::XmlMarkup) }
-    end
 
     describe "#rows" do
       specify { subject.rows.should be_a_kind_of(Array) }
@@ -17,16 +13,6 @@ module Ted
 
     describe "#content" do
       let(:content) { subject.content }
-
-      specify { content.should be_a_kind_of(String) }
-
-      it "specifies xml version 1.0" do
-        content.should =~ /<?xml version="1.0"/
-      end
-
-      it "specifies UTF-8 encoding" do
-        content.should =~ /encoding="UTF-8"\?>/
-      end
 
       it "opens the office:document-content tag" do
         content.should =~ /<office:document-content/

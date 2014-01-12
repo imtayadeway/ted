@@ -16,6 +16,7 @@ module Ted
     it { should respond_to(:settings) }
     it { should respond_to(:styles) }
     it { should respond_to(:xml_docs) }
+    it { should respond_to(:compose) }
     
     its(:content) { should be_an_instance_of(Ted::Content) }
     its(:manifest) { should be_an_instance_of(Ted::Manifest) }

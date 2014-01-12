@@ -1,24 +1,18 @@
 module Ted
   class Meta < XmlDoc
     def content
-      # TODO: give ted a version
       xml.office(:'document-meta', document_meta_attrs) do
         xml.office(:meta) do
           xml.meta(:'initial-creator', ENV['USER'])
           xml.meta(:'creation-date', DateTime.now)
           xml.meta(:'document-statistic', document_statistic_attrs)
-          xml.meta(:'generator', 'Ted')
+          xml.meta(:'generator', "Ted-#{ Ted.version }")
         end
       end
     end
-
-    def file
-      @file ||= Tempfile.new(['meta', '.xml'])
-    end
-
-    def write
-      file.write(content)
-      file.rewind
+    
+    def name
+      'meta'
     end
 
   private

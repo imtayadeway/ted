@@ -16,6 +16,10 @@ module Ted
         end
       end
     end
+    
+    def name
+      'styles'
+    end
 
   private
 

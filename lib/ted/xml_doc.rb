@@ -10,6 +10,23 @@ module Ted
     def content
       raise NotImplementedError, 'You must implement #content'
     end
+    
+    def name
+      raise NotImplementedError, 'You must implement #name'
+    end
+    
+    def compose
+      raise NotImplementedError, 'You must implement #compose'
+    end
+    
+    def file
+      @file ||= Tempfile.new([name, '.xml'])
+    end
+    
+    def write
+      file.write(content)
+      file.rewind
+    end
 
   private
     def add_font_faces

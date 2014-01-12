@@ -32,6 +32,10 @@ module Ted
         end
       end
     end
+    
+    def name
+      'content'
+    end
 
   private
 

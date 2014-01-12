@@ -7,6 +7,10 @@ module Ted
         end
       end
     end
+    
+    def name
+      'manifest'
+    end
 
   private
 
