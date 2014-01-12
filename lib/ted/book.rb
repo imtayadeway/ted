@@ -1,13 +1,11 @@
 module Ted
   class Book
-    class << self
-      def build(filename)
-        new(filename)
-      end
-    end
-
     attr_accessor :filename, :sheets 
     attr_reader :content, :manifest, :meta, :settings, :styles
+    
+    def self.build(filename)
+      new(filename)
+    end
 
     def initialize(filename)
       @filename = filename
@@ -17,6 +15,10 @@ module Ted
       @meta = Ted::Meta.new
       @settings = Ted::Settings.new
       @styles = Ted::Styles.new
+    end
+    
+    def xml_docs
+      [content, manifest, meta, settings, styles]
     end
 
     def add_sheet(options = {})
