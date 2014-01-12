@@ -8,6 +8,7 @@ require 'ted/settings'
 require 'ted/styles'
 require 'builder'
 require 'tempfile'
+require 'date'
 require 'zip'
 
 module Ted
