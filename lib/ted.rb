@@ -8,3 +8,12 @@ require 'ted/settings'
 require 'ted/styles'
 require 'builder'
 require 'tempfile'
+require 'zip'
+
+module Ted
+  VERSION = '0.0.0'
+  
+  def self.version
+    VERSION
+  end
+end
