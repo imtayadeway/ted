@@ -1,14 +1,15 @@
 module Ted
   class Book
-    attr_accessor :filename, :sheets 
+    attr_accessor :filename, :path, :sheets
     attr_reader :content, :manifest, :meta, :settings, :styles
     
-    def self.build(filename)
-      new(filename)
+    def self.build(filename, path)
+      new(filename, path)
     end
 
-    def initialize(filename)
+    def initialize(filename, path)
       @filename = filename
+      @path = path
       @sheets = []
       @content = Ted::Content.new
       @manifest = Ted::Manifest.new
@@ -19,10 +20,6 @@ module Ted
     
     def xml_docs
       [content, manifest, meta, settings, styles]
-    end
-    
-    def xml_doc_names
-      xml_docs.map(&:name)
     end
 
     def add_sheet(options = {})
@@ -35,18 +32,21 @@ module Ted
     end
     
     def compose
-      xml_docs.each do |xml_doc|
-        Tempfile.new(xml_doc.name).write(xml_doc.content) # close when done
-      end
+      xml_docs.each { |xml_doc| xml_doc.write }
     end
 
     def save
-      File.new("#{ filename }.ods", 'w')
-      #Zip::File.open(filename, Zip::File::CREATE) do |zipfile|
-      #  xml_doc_names.each do |filename|
-      #    zipfile.add(filename, folder + '/' + filename))
-      #  end
-      #end
+      Zip::File.open(fqn, Zip::File::CREATE) do |zipfile|
+        xml_docs.each do |xml_doc|
+          zipfile.add(xml_doc.full_name, xml_doc.path)
+        end
+      end
+      
+      xml_docs.each(&:close)
+    end
+    
+    def fqn
+      File.join(path, filename + '.ods')
     end
     
   private

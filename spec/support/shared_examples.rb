@@ -3,12 +3,16 @@ shared_examples "an xml doc" do
   it { should respond_to(:content) }
   it { should respond_to(:name) }
   it { should respond_to(:file) }
+  it { should respond_to(:write) }
+  it { should respond_to(:close) }
+  it { should respond_to(:full_name) }
+  it { should respond_to(:path) }
 
   its(:file) { should be_a_kind_of(Tempfile) }
-  
-  it { should respond_to(:write) }
 
   describe "#write" do
+    after(:each) { subject.file.close }
+    
     it "writes the content to file" do
       expect { subject.write }.to change { subject.file.read }
     end

@@ -19,6 +19,10 @@ module Ted
       raise NotImplementedError, 'You must implement #compose'
     end
     
+    def full_name
+      name + '.xml'
+    end
+    
     def file
       @file ||= Tempfile.new([name, '.xml'])
     end
@@ -27,8 +31,17 @@ module Ted
       file.write(content)
       file.rewind
     end
+    
+    def close
+      file.close
+    end
+    
+    def path
+      file.path
+    end
 
   private
+  
     def add_font_faces
       font_face_attrs.each { |attrs| font_face(attrs) }
     end

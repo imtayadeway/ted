@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module Ted
   describe Book do
-    subject { Book.build('filename') }
+    subject { Book.build('filename', '/tmp') }
 
     it { should respond_to(:filename) }
     it { should respond_to(:sheets) }
@@ -26,7 +26,7 @@ module Ted
 
     describe ".build" do
       specify { Book.should respond_to(:build) }
-      specify { Book.build(name: 'filename').should be_an_instance_of(Book) }
+      specify { Book.build('filename', '/tmp').should be_an_instance_of(Book) }
     end
 
     describe "#add_sheet" do
@@ -56,12 +56,12 @@ module Ted
     end
 
     describe "#save" do
-      after { File.exist?('filename.ods') && File.delete('filename.ods') }
+      after { File.exist?('/tmp/filename.ods') && File.delete('/tmp/filename.ods') }
 
       it "creates a new file" do
         expect {
           subject.save
-        }.to change{ File.exist?('filename.ods') }.to(true)
+        }.to change{ File.exist?('/tmp/filename.ods') }.to(true)
       end
     end
   end
