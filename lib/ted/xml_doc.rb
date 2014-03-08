@@ -1,47 +1,45 @@
 module Ted
   class XmlDoc
-    attr_accessor :xml
+    extend Forwardable
+
+    attr_accessor :xml, :config
+
+    def_delegators :@file, :close, :path
 
     def initialize
       @xml = Builder::XmlMarkup.new(indent: 0)
       xml.instruct! :xml, encoding: 'UTF-8'
+      config_file = File.open(File.join(CONFIG_PATH, 'xml_attributes.yml'))
+      @config = YAML.load(config_file)
     end
 
     def content
       raise NotImplementedError, 'You must implement #content'
     end
-    
+
     def name
       raise NotImplementedError, 'You must implement #name'
     end
-    
+
     def compose
       raise NotImplementedError, 'You must implement #compose'
     end
-    
+
     def full_name
       name + '.xml'
     end
-    
+
     def file
       @file ||= Tempfile.new([name, '.xml'])
     end
-    
+
     def write
       file.write(content)
       file.rewind
     end
-    
-    def close
-      file.close
-    end
-    
-    def path
-      file.path
-    end
 
   private
-  
+
     def add_font_faces
       font_face_attrs.each { |attrs| font_face(attrs) }
     end
@@ -51,35 +49,7 @@ module Ted
     end
 
     def font_face_attrs
-      [
-        {
-          :'style:name'                => "Arial",
-          :'svg:font-family'           => "Arial",
-          :'style:font-family-generic' => "swiss",
-          :'style:font-pitch'          => "variable"
-        },
-
-        {
-          :'style:name'                => "DejaVu Sans",
-          :'svg:font-family'           => "DejaVu Sans",
-          :'style:font-family-generic' => "system",
-          :'style:font-pitch'          => "variable"
-        },
-
-        {
-          :'style:name'                => "Lohit Hindi",
-          :'svg:font-family'           => "'Lohit Hindi'",
-          :'style:font-family-generic' => "system",
-          :'style:font-pitch'          => "variable"
-        },
-
-        {
-          :'style:name'                => "WenQuanYi Zen Hei",
-          :'svg:font-family'           => "'WenQuanYi Zen Hei'",
-          :'style:font-family-generic' => "system",
-          :'style:font-pitch'          => "variable"
-        }
-      ]
+      config[:font_face_attrs]
     end
   end
 end

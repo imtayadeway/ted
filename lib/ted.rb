@@ -10,10 +10,12 @@ require 'builder'
 require 'tempfile'
 require 'date'
 require 'zip'
+require 'yaml'
 
 module Ted
   VERSION = '0.0.0'
-  
+  CONFIG_PATH = File.join(File.dirname(__FILE__), '..', 'config')
+
   def self.version
     VERSION
   end
