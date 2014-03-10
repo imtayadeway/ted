@@ -12,7 +12,7 @@ module Ted
         end
       end
     end
-    
+
     def name
       'settings'
     end
@@ -20,45 +20,27 @@ module Ted
   private
 
     def document_settings_attrs
-      {
-        :'xmlns:office'   => "urn:oasis:names:tc:opendocument:xmlns:office:1.0",
-        :'xmlns:xlink'    => "http://www.w3.org/1999/xlink",
-        :'xmlns:config'   => "urn:oasis:names:tc:opendocument:xmlns:config:1.0",
-        :'xmlns:ooo'      => "http://openoffice.org/2004/office",
-        :'office:version' => "1.2"
-      }
+      config[:document_settings_attrs]
     end
 
     def config_item_set_attrs
-      { :'config:name' => "ooo:view-settings" }
+      config[:config_item_set_attrs]
     end
 
     def visible_area_top_attrs
-      {
-        :'config:name' => "VisibleAreaTop",
-        :'config:type' => "int"
-      }
+      config[:visible_area_top_attrs]
     end
 
     def visible_area_left_attrs
-      {
-        :'config:name' => "VisibleAreaLeft",
-        :'config:type' => "int"
-      }
+      config[:visible_area_left_attrs]
     end
 
     def visible_area_width_attrs
-      {
-        :'config:name' => "VisibleAreaWidth",
-        :'config:type' => "int"
-      }
+      config[:visible_area_width_attrs]
     end
 
     def visible_area_height_attrs
-      {
-        :'config:name' => "VisibleAreaLHeight",
-        :'config:type' => "int"
-      }
+      config[:visible_area_height_attrs]
     end
   end
 end
