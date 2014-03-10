@@ -7,7 +7,7 @@ module Ted
         end
       end
     end
-    
+
     def name
       'manifest'
     end
@@ -19,74 +19,43 @@ module Ted
     end
 
     def manifest_attrs
-      {
-        :'xmlns:manifest' => "urn:oasis:names:tc:opendocument:xmlns:manifest:1.0",
-        :'manifest:version' => "1.2"
-      }
+      config[:manifest_attrs]
     end
 
     def base_path_attrs
-      {
-        :'manifest:full-path' => "/",
-        :'manifest:version' => "1.2",
-        :'manifest:media-type' => "application/vnd.oasis.opendocument.spreadsheet"
-      }
+      config[:base_path_attrs]
     end
 
     def meta_path_attrs
-      {
-        :'manifest:full-path' => "meta.xml",
-        :'manifest:media-type' => "text/xml"
-      }
+      config[:meta_path_attrs]
     end
 
     def settings_path_attrs
-      {
-        :'manifest:full-path' => "settings.xml",
-        :'manifest:media-type' => "text/xml"
-      }
+      config[:settings_path_attrs]
     end
 
     def content_path_attrs
-      {
-        :'manifest:full-path' => "content.xml",
-        :'manifest:media-type' => "text/xml"
-      }
+      config[:content_path_attrs]
     end
 
     def thumbnails_path_attrs
-      {
-        :'manifest:full-path' => "Thumbnails/thumbnail.png",
-        :'manifest:media-type' => "image/png"
-      }
+      config[:thumbnails_path_attrs]
     end
 
     def manifest_path_attrs
-      {
-        :'manifest:full-path' => "manifest.rdf",
-        :'manifest:media-type' => "application/rdf+xml"
-      }
+      config[:manifest_path_attrs]
     end
 
     def accellerator_path_attrs
-      {
-        :'manifest:full-path' => "Configurations2/accelerator/current.xml",
-        :'manifest:media-type' => ""
-      }
+      config[:accellerator_path_attrs]
     end
 
     def configuration_path_attrs
-      {
-        :'manifest:full-path' => "Configurations2/",
-        :'manifest:media-type' => "application/vnd.sun.xml.ui.configuration"
-      }
+      config[:configuration_path_attrs]
     end
 
     def styles_path_attrs
-      {
-        :'manifest:full-path' => "styles.xml",
-        :'manifest:media-type' => "text/xml"
-      }
+      config[:styles_path_attrs]
     end
   end
 end

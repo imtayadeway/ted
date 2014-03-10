@@ -86,3 +86,46 @@
   - :style:table-column-properties
   - :style:table-row-properties
   - :style:table-properties
+
+# Manifest
+
+:manifest_attrs:
+  :xmlns:manifest: urn:oasis:names:tc:opendocument:xmlns:manifest:1.0
+  :manifest:version: '1.2'
+
+:base_path_attrs:
+  :manifest:full-path: "/"
+  :manifest:version: '1.2'
+  :manifest:media-type: application/vnd.oasis.opendocument.spreadsheet
+
+:meta_path_attrs:
+  :manifest:full-path: meta.xml
+  :manifest:media-type: text/xml
+
+:settings_path_attrs:
+  :manifest:full-path: settings.xml
+  :manifest:media-type: text/xml
+
+:content_path_attrs:
+  :manifest:full-path: content.xml
+  :manifest:media-type: text/xml
+
+:thumbnails_path_attrs:
+  :manifest:full-path: Thumbnails/thumbnail.png
+  :manifest:media-type: image/png
+
+:manifest_path_attrs:
+  :manifest:full-path: manifest.rdf
+  :manifest:media-type: application/rdf+xml
+
+:accellerator_path_attrs:
+  :manifest:full-path: Configurations2/accelerator/current.xml
+  :manifest:media-type: ''
+
+:configuration_path_attrs:
+  :manifest:full-path: Configurations2/
+  :manifest:media-type: application/vnd.sun.xml.ui.configuration
+
+:styles_path_attrs:
+  :manifest:full-path: styles.xml
+  :manifest:media-type: text/xml
