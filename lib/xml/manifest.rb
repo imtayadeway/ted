@@ -1,4 +1,4 @@
-module Ted
+module Xml
   class Manifest < XmlDoc
     def content
       xml.manifest(:manifest, manifest_attrs) do

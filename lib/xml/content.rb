@@ -1,4 +1,4 @@
-module Ted
+module Xml
   class Content < XmlDoc
     attr_accessor :book, :rows
 

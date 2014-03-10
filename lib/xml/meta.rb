@@ -1,4 +1,4 @@
-module Ted
+module Xml
   class Meta < XmlDoc
     def content
       xml.office(:'document-meta', document_meta_attrs) do

@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-module Ted
+module Xml
   describe Content do
     it_behaves_like "an xml doc"
-    
+
     it { should respond_to(:book) }
     it { should respond_to(:rows) }
 

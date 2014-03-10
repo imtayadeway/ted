@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Ted
+module Xml
   describe Manifest do
     it { should respond_to(:xml) }
     it { should respond_to(:content) }

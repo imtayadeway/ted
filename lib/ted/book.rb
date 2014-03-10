@@ -2,7 +2,7 @@ module Ted
   class Book
     attr_accessor :filename, :path, :sheets
     attr_reader :content, :manifest, :meta, :settings, :styles
-    
+
     def self.build(filename, path)
       new(filename, path)
     end
@@ -11,13 +11,13 @@ module Ted
       @filename = filename
       @path = path
       @sheets = []
-      @content = Ted::Content.new
-      @manifest = Ted::Manifest.new
-      @meta = Ted::Meta.new
-      @settings = Ted::Settings.new
-      @styles = Ted::Styles.new
+      @content = Xml::Content.new
+      @manifest = Xml::Manifest.new
+      @meta = Xml::Meta.new
+      @settings = Xml::Settings.new
+      @styles = Xml::Styles.new
     end
-    
+
     def xml_docs
       [content, manifest, meta, settings, styles]
     end
@@ -26,7 +26,7 @@ module Ted
       sheets << Ted::Sheet.new(options.delete(:name) || new_sheetname, options)
       sheets.last
     end
-    
+
     def sheetnames
       sheets.map(&:name)
     end
@@ -40,13 +40,13 @@ module Ted
         end
       end
     end
-    
+
     def fqn
       File.join(path, filename + '.ods')
     end
-    
+
   private
-    
+
     def new_sheetname
       return 'Sheet 1' unless sheetnames.include?('Sheet 1')
       'Sheet 2'

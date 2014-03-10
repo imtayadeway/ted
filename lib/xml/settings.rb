@@ -1,4 +1,4 @@
-module Ted
+module Xml
   class Settings < XmlDoc
     def content
       xml.office(:'document-settings', document_settings_attrs) do

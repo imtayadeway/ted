@@ -16,12 +16,12 @@ module Ted
     it { should respond_to(:settings) }
     it { should respond_to(:styles) }
     it { should respond_to(:xml_docs) }
-    
-    its(:content) { should be_an_instance_of(Ted::Content) }
-    its(:manifest) { should be_an_instance_of(Ted::Manifest) }
-    its(:meta) { should be_an_instance_of(Ted::Meta) }
-    its(:settings) { should be_an_instance_of(Ted::Settings) }
-    its(:styles) { should be_an_instance_of(Ted::Styles) }
+
+    its(:content) { should be_an_instance_of(Xml::Content) }
+    its(:manifest) { should be_an_instance_of(Xml::Manifest) }
+    its(:meta) { should be_an_instance_of(Xml::Meta) }
+    its(:settings) { should be_an_instance_of(Xml::Settings) }
+    its(:styles) { should be_an_instance_of(Xml::Styles) }
 
     describe ".build" do
       specify { Book.should respond_to(:build) }
@@ -41,7 +41,7 @@ module Ted
     describe "#sheets" do
       specify { subject.sheets.should be_an_instance_of(Array) }
     end
-    
+
     describe "#add_sheet" do
       context "with no arguments" do
         it "returns an instance of Sheet" do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Ted
+module Xml
   describe Settings do
     it_behaves_like "an xml doc"
 

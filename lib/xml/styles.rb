@@ -1,4 +1,4 @@
-module Ted
+module Xml
   class Styles < XmlDoc
     def content
       xml.office(:'document-styles', document_styles_attrs) do
