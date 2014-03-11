@@ -5,6 +5,7 @@ require 'tempfile'
 require 'date'
 require 'zip'
 require 'yaml'
+require 'forwardable'
 
 module Xml
   class XmlDoc
