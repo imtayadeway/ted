@@ -38,6 +38,11 @@ module Ted
           zipfile.add(xml_doc.full_name, xml_doc.path)
           xml_doc.close
         end
+
+        zipfile.add(
+          'manifest.rdf',
+          File.join(File.dirname(__FILE__), '..', 'xml', 'manifest.rdf')
+        )
       end
     end
 

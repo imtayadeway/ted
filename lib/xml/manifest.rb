@@ -12,6 +12,10 @@ module Xml
       'manifest'
     end
 
+    def full_name
+      'META-INF' + '/' + name + '.xml'
+    end
+
   private
 
     def file_entry_attrs
