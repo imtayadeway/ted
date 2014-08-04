@@ -22,8 +22,16 @@ module Ted
       [content, manifest, meta, settings, styles]
     end
 
-    def add_sheet(options = {})
-      sheets << Ted::Sheet.new(options.delete(:name) || new_sheetname, options)
+    def add_sheet(opts = {})
+      sheetname = opts.fetch(:name) { new_sheetname }
+      opts.delete(:name)
+
+      headers = opts.map do |column, header_opts|
+        header_opts.merge!(column: column)
+        Header.new(header_opts)
+      end
+
+      sheets << Ted::Sheet.new(sheetname, headers)
       sheets.last
     end
 

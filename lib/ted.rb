@@ -1,5 +1,6 @@
 require 'ted/book'
 require 'ted/sheet'
+require 'ted/cell'
 require 'builder'
 require 'tempfile'
 require 'date'
